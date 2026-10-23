@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mikyu | Premium Shopping</title>
+<style>
+:root{--blue:#1749b5;--yellow:#ffdf35;--bg:#f4f6fb}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#202536}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:8px;padding:11px 14px;font-weight:bold}
+header{background:var(--blue);color:white;padding:14px 4%;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:900}
+.logo span{color:var(--yellow)}
+.search{flex:1;min-width:150px;padding:13px;border:0;border-radius:9px}
+.white{background:white;color:var(--blue)}
+.yellow{background:var(--yellow);color:#17213b}
+.dark{background:#17213b;color:white}
+.orange{background:#ff8c32;color:white}
+nav{display:flex;gap:8px;overflow:auto;background:white;padding:12px 4%;box-shadow:0 2px 8px #00000008}
+nav button{background:#f0f4ff;color:#24437d;white-space:nowrap}
+.wrap{max-width:1250px;margin:auto;padding:16px}
+.hero{border-radius:18px;padding:28px 22px;color:white;background:linear-gradient(115deg,#11275d,#1766dd,#7556dc);display:flex;align-items:center;justify-content:space-between;gap:12px;overflow:hidden}
+.hero h1{font-size:clamp(28px,6vw,48px);margin:0 0 12px}
+.hero p{line-height:1.6}
+.hero .tag{color:var(--yellow);font-weight:bold}
+.hero-art{font-size:65px}
+.perks{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:14px 0}
+.perk,.panel{background:white;border-radius:12px;padding:15px}
+h2{font-size:21px}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card{background:white;border-radius:13px;padding:10px;min-width:0;box-shadow:0 3px 15px #162b5310}
+.pic{height:145px;background:#f7f8fc;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:contain}
+.card h3{font-size:14px;line-height:1.4}
+.price{font-size:20px;font-weight:bold;margin:8px 0}
+.old{font-size:12px;text-decoration:line-through;color:#858b99;font-weight:normal}
+.green{color:#12814b;font-size:12px;font-weight:bold}
+.rating{color:#18834c;font-size:12px}
+.card button{width:100%;margin-top:7px}
+.heart{float:right;background:#f0f3fa;padding:6px 9px}
+footer{background:#17213b;color:white;padding:25px;text-align:center;margin-top:24px}
+.hidden{display:none!important}
+input,select{padding:12px;border:1px solid #d9deea;border-radius:8px;width:100%;margin:5px 0 12px;background:white}
+label{font-size:13px;font-weight:bold}
+.formgrid{display:grid;grid-template-columns:1fr;gap:6px}
+.adminstats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{background:#edf3ff;padding:16px;border-radius:10px}
+.stat b{font-size:24px;display:block;margin-top:7px}
+.manage{border-bottom:1px solid #eee;padding:12px 0;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.manage small{color:#666}
+.bottom{display:none}
+@media(min-width:650px){
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+ .pic{height:190px}
+ .perks{grid-template-columns:repeat(4,1fr)}
+ .formgrid{grid-template-columns:1fr 1fr}
+ .adminstats{grid-template-columns:repeat(3,1fr)}
+ .hero{padding:42px}
+}
+@media(max-width:480px){
+ .wrap{padding:11px}
+ .hero-art{font-size:44px}
+ .logo{font-size:23px}
+ .top{gap:8px}
+ .grid{gap:8px}
+ .card{padding:8px}
+ .pic{height:125px}
+ .bottom{position:fixed;bottom:0;left:0;right:0;z-index:6;background:white;display:flex;justify-content:space-around;padding:9px 2px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px #0001}
+ .bottom button{background:white;padding:7px 5px;font-size:11px}
+ body{padding-bottom:60px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="top">
+  <div class="logo">Mikyu<span> ✦</span></div>
+  <input class="search" id="search" placeholder="🔍 Search products..."
+   oninput="render()">
+  <button class="white" onclick="showCart()">🛒 <span id="count">0</span></button>
+  <button class="yellow" onclick="showAdmin()">Admin</button>
+ </div>
+</header>
+
+<div id="shop">
+ <nav>
+  <button onclick="category='All';render()">All Products</button>
+  <button onclick="category='Electronics';render()">Electronics</button>
+  <button onclick="category='Fashion';render()">Fashion</button>
+  <button onclick="category='Beauty';render()">Beauty</button>
+  <button onclick="category='Home';render()">Home</button>
+  <button onclick="category='Accessories';render()">Accessories</button>
+ </nav>
+
+ <main class="wrap">
+  <section class="hero">
+   <div>
+    <div class="tag">MIKYU MEGA DEALS</div>
+    <h1>Shopping that<br>makes you smile.</h1>
+    <p>Discover your favourites at amazing prices.</p>
+    <button class="yellow" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore Products →</button>
+   </div>
+   <div class="hero-art">🛍️</div>
+  </section>
+
+  <section class="perks">
+   <div class="perk">🚚<br><b>Easy Shopping</b><br><small>Browse products</small></div>
+   <div class="perk">💎<br><b>Great Deals</b><br><small>Value for money</small></div>
+   <div class="perk">❤️<br><b>Wishlist</b><br><small>Save favourites</small></div>
+   <div class="perk">📱<br><b>Mobile Ready</b><br><small>Shop on your phone</small></div>
+  </section>
+
+  <section id="cart" class="panel hidden">
+   <div class="sectionhead"><h2>🛒 Your Cart</h2><button onclick="hideCart()">Close ✕</button></div>
+   <div id="cartitems"></div>
+   <h3 id="total">Total: ₹0</h3>
+   <p><small>Demo cart only. Online payment is not connected.</small></p>
+  </section>
+
+  <div class="sectionhead"><h2>✨ Recommended for You</h2></div>
+  <section class="grid" id="products"></section>
+ </main>
+</div>
+
+<section id="admin" class="wrap hidden">
+ <div class="sectionhead">
+  <h2>⚙️ Mikyu Admin Dashboard</h2>
+  <button class="white" onclick="showShop()">← Store</button>
+ </div>
+ <p>Manage your demo store products from here.</p>
+
+ <div class="adminstats">
+  <div class="stat">Products<b id="statProducts">0</b></div>
+  <div class="stat">Cart Items<b id="statCart">0</b></div>
+  <div class="stat">Wishlist Items<b id="statWish">0</b></div>
+ </div>
+
+ <section class="panel" style="margin-top:14px">
+  <h2 id="formtitle">➕ Add a Product</h2>
+  <form id="productform" onsubmit="saveProduct(event)">
+   <input id="pid" type="hidden">
+   <label>Product Name</label>
+   <input id="pname" required placeholder="Wireless Headphones">
+   <div class="formgrid">
+    <div><label>Price (₹)</label><input id="pprice" type="number" min="1" required placeholder="799"></div>
+    <div><label>Old Price (₹)</label><input id="pold" type="number" min="1" placeholder="1499"></div>
+   </div>
+   <label>Category</label>
+   <select id="pcat">
+    <option>Electronics</option><option>Fashion</option>
+    <option>Beauty</option><option>Home</option><option>Accessories</option>
+   </select>
+   <label>Image URL</label>
+   <input id="pimg" type="url" placeholder="https://example.com/product.jpg">
+   <button class="dark" type="submit">Save Product</button>
+   <button type="button" onclick="resetForm()">Clear</button>
+  </form>
+ </section>
+
+ <section class="panel" style="margin-top:14px">
+  <h2>📦 Manage Products</h2>
+  <div id="manageproducts"></div>
+ </section>
+ <p><small>Important: This demo dashboard has no secure login. Product changes are stored only in this browser. They won't automatically update other customers' devices.</small></p>
+</section>
+
+<div class="bottom">
+ <button onclick="showShop()">🏠<br>Home</button>
+ <button onclick="category='All';showShop();render()">▦<br>Categories</button>
+ <button onclick="showWishlist()">♥<br>Wishlist</button>
+ <button onclick="showCart()">🛒<br>Cart</button>
+</div>
+
+<footer>
+ <h2>Mikyu ✦</h2>
+ <p>Your shopping, your style.</p>
+ <p>About | Contact | Help</p>
+ <small>© 2026 Mikyu</small>
+</footer>
+
+<script>
+const starter=[
+{id:1,name:"Wireless Headphones",price:799,old:1499,cat:"Electronics",img:"https://placehold.co/400x300/e8efff/244a9b?text=Headphones"},
+{id:2,name:"Smart Watch",price:999,old:1999,cat:"Electronics",img:"https://placehold.co/400x300/e8efff/244a9b?text=Smart+Watch"},
+{id:3,name:"Running Shoes",price:1199,old:1999,cat:"Fashion",img:"https://placehold.co/400x300/f5e8dc/7a4930?text=Shoes"},
+{id:4,name:"Stylish T-Shirt",price:399,old:799,cat:"Fashion",img:"https://placehold.co/400x300/f3e5f5/71418a?text=T-Shirt"},
+{id:5,name:"Beauty Care Kit",price:599,old:999,cat:"Beauty",img:"https://placehold.co/400x300/fce4ec/a02c58?text=Beauty+Kit"},
+{id:6,name:"Home Lamp",price:699,old:1199,cat:"Home",img:"https://placehold.co/400x300/fff0d8/8b6124?text=Home+Lamp"},
+{id:7,name:"Travel Bag",price:899,old:1499,cat:"Accessories",img:"https://placehold.co/400x300/e0f2f1/23665f?text=Travel+Bag"}
+];
+function load(key,fallback){
+ try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}
+ catch(e){return fallback}
+}
+let products=load("mikyuProducts",starter);
+let cart=load("mikyuCart",{});
+let wishlist=load("mikyuWishlist",[]);
+let category="All";
+const $=id=>document.getElementById(id);
+const money=n=>"₹"+Number(n).toLocaleString("en-IN");
+function persist(){
+ localStorage.setItem("mikyuProducts",JSON.stringify(products));
+ localStorage.setItem("mikyuCart",JSON.stringify(cart));
+ localStorage.setItem("mikyuWishlist",JSON.stringify(wishlist));
+}
+function safe(s){
+ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function render(){
+ const q=$("search").value.toLowerCase();
+ const list=products.filter(p=>(category==="All"||p.cat===category)&&p.name.toLowerCase().includes(q));
+ $("products").innerHTML=list.length?list.map(p=>`
+ <article class="card">
+  <button class="heart" onclick="wish(${p.id})">${wishlist.includes(p.id)?"❤️":"♡"}</button>
+  <div class="pic"><img src="${safe(p.img||"https://placehold.co/400x300?text=Mikyu")}" alt="${safe(p.name)}" onerror="this.src='https://placehold.co/400x300?text=Product'"></div>
+  <h3>${safe(p.name)}</h3>
+  <div class="rating">★ 4.5 | Demo rating</div>
+  <div class="price">${money(p.price)} <span class="old">${p.old?money(p.old):""}</span></div>
+  <div class="green">${p.old>p.price?Math.round((1-p.price/p.old)*100)+"% off":"Great price"}</div>
+  <button class="yellow" onclick="add(${p.id})">Add to Cart</button>
+  <button class="orange" onclick="add(${p.id});showCart()">Buy Now</button>
+ </article>`).join(""):'<p>No products found.</p>';
+ updateCart();
+}
+function add(id){cart[id]=(cart[id]||0)+1;persist();render();alert("Added to cart!")}
+function wish(id){
+ wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];
+ persist();render();
+}
+function showWishlist(){
+ category="All";showShop();
+ const items=products.filter(p=>wishlist.includes(p.id));
+ $("products").innerHTML=items.length?items.map(p=>`
+ <article class="card"><div class="pic"><img src="${safe(p.img)}" alt="${safe(p.name)}"></div>
+ <h3>${safe(p.name)}</h3><div class="price">${money(p.price)}</div>
+ <button class="yellow" onclick="add(${p.id})">Add to Cart</button>
+ <button onclick="wish(${p.id})">Remove ❤️</button></article>`).join(""):"<p>Your wishlist is empty.</p>";
+}
+function updateCart(){
+ const count=Object.values(cart).reduce((a,b)=>a+b,0);
+ $("count").textContent=count;
+ const entries=Object.entries(cart).filter(([id,q])=>q>0);
+ $("cartitems").innerHTML=entries.length?entries.map(([id,q])=>{
+ const p=products.find(x=>x.id===Number(id));if(!p)return "";
+ return `<div class="manage"><div><b>${safe(p.name)}</b><br><small>${money(p.price)} each</small></div>
+ <div><button onclick="qty(${id},-1)">−</button> ${q} <button onclick="qty(${id},1)">+</button></div></div>`;
+ }).join(""):"<p>Your cart is empty.</p>";
+ $("total").textContent="Total: "+money(entries.reduce((sum,[id,q])=>sum+(products.find(p=>p.id===Number(id))?.price||0)*q,0));
+ $("statProducts").textContent=products.length;
+ $("statCart").textContent=count;
+ $("statWish").textContent=wishlist.length;
+}
+function qty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];persist();render()}
+function showCart(){showShop();$("cart").classList.remove("hidden");updateCart();$("cart").scrollIntoView({behavior:"smooth"})}
+function hideCart(){$("cart").classList.add("hidden")}
+function showShop(){$("shop").classList.remove("hidden");$("admin").classList.add("hidden")}
+function showAdmin(){showShop();$("shop").classList.add("hidden");$("admin").classList.remove("hidden");adminRender();window.scrollTo(0,0)}
+function adminRender(){
+ $("manageproducts").innerHTML=products.map(p=>`
+ <div class="manage"><div><b>${safe(p.name)}</b><br><small>${money(p.price)} · ${safe(p.cat)}</small></div>
+ <div><button onclick="editProduct(${p.id})">Edit</button>
+ <button onclick="deleteProduct(${p.id})">Delete</button></div></div>`).join("")||"No products yet.";
+ updateCart();
+}
+function saveProduct(e){
+ e.preventDefault();
+ const id=Number($("pid").value);
+ const name=$("pname").value.trim();
+ const price=Number($("pprice").value);
+ const old=Number($("pold").value)||price;
+ const cat=$("pcat").value;
+ const img=$("pimg").value.trim()||"https://placehold.co/400x300?text=Mikyu";
+ if(!name||price<=0){alert("Enter a product name and valid price.");return}
+ if(id){products=products.map(p=>p.id===id?{...p,name,price,old,cat,img}:p)}
+ else{products.unshift({id:Date.now(),name,price,old,cat,img})}
+ persist();resetForm();adminRender();render();alert("Product saved!");
+}
+function editProduct(id){
+ const p=products.find(p=>p.id===id);if(!p)return;
+ $("pid").value=p.id;$("pname").value=p.name;$("pprice").value=p.price;
+ $("pold").value=p.old;$("pcat").value=p.cat;$("pimg").value=p.img;
+ $("formtitle").textContent="✏️ Edit Product";
+ $("productform").scrollIntoView({behavior:"smooth"});
+}
+function deleteProduct(id){
+ if(!confirm("Delete this product?"))return;
+ products=products.filter(p=>p.id!==id);delete cart[id];
+ wishlist=wishlist.filter(x=>x!==id);
+ persist();adminRender();render();
+}
+function resetForm(){
+ $("productform").reset();$("pid").value="";
+ $("formtitle").textContent="➕ Add a Product";
+}
+render();
+</script>
+</body>
+</html>
