@@ -1,1 +1,222 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mikyu - Online Shopping</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f1f3f6;color:#222}
+header{background:#2874f0;color:white;padding:14px 4%;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:bold;color:white}
+.tag{font-size:12px;color:#ffe500}
+.search{flex:1;min-width:160px;max-width:500px;padding:12px;border:0;border-radius:5px;font-size:15px}
+button{cursor:pointer;border:0;border-radius:5px;padding:10px 14px;font-weight:bold}
+.cartbtn{background:#fff;color:#2874f0}
+nav{display:flex;gap:10px;overflow-x:auto;padding:13px 4%;background:white}
+nav button{background:#fff;color:#333;white-space:nowrap}
+nav button:hover{color:#2874f0}
+.banner{margin:12px;background:linear-gradient(120deg,#142b73,#2874f0,#7e57c2);color:white;padding:28px 20px;border-radius:8px}
+.banner h1{font-size:30px;margin-bottom:10px}
+.banner p{margin-bottom:15px}
+.banner button{background:#ffdf00;color:#222}
+main{padding:10px 12px}
+.heading{background:white;padding:16px;margin-bottom:10px;border-radius:5px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{background:white;border-radius:7px;padding:10px;min-width:0}
+.card img{width:100%;height:150px;object-fit:contain;background:#fafafa}
+.card h3{font-size:15px;margin:10px 0;line-height:1.4}
+.price{font-size:19px;font-weight:bold;margin:8px 0}
+.old{color:#777;text-decoration:line-through;font-size:12px;margin-left:5px}
+.offer{color:#13803c;font-size:13px;margin:5px 0}
+.card button{width:100%;margin-top:7px;background:#ff9f00;color:#fff}
+.card .buy{background:#fb641b}
+footer{text-align:center;background:#172337;color:white;padding:25px;margin-top:20px}
+#cartPanel{background:white;padding:15px;margin-bottom:12px;border-radius:6px;display:none}
+.cartrow{padding:10px 0;border-bottom:1px solid #ddd}
+.empty{text-align:center;padding:30px;color:#777}
+@media(min-width:650px){
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .banner{margin:18px 4%;padding:40px}
+ main{padding:10px 4%}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="top">
+  <div>
+   <div class="logo">Mikyu ✦</div>
+   <div class="tag">Shopping made easy!</div>
+  </div>
+  <input class="search" id="search" placeholder="Search for products..."
+  oninput="renderProducts()">
+  <button class="cartbtn" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button>
+ </div>
+</header>
+
+<nav>
+ <button onclick="setCategory('All')">All Products</button>
+ <button onclick="setCategory('Electronics')">Electronics</button>
+ <button onclick="setCategory('Fashion')">Fashion</button>
+ <button onclick="setCategory('Beauty')">Beauty</button>
+ <button onclick="setCategory('Home')">Home</button>
+ <button onclick="setCategory('Accessories')">Accessories</button>
+</nav>
+
+<section class="banner">
+ <h1>Big Shopping Days!</h1>
+ <p>Discover great products at amazing prices.</p>
+ <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+  Shop Now →
+ </button>
+</section>
+
+<main>
+ <section id="cartPanel">
+  <h2>🛒 Your Shopping Cart</h2>
+  <div id="cartItems"></div>
+  <h3 id="total" style="margin-top:12px"></h3>
+  <button onclick="checkout()" style="background:#fb641b;color:white;margin-top:12px">
+   Continue to Checkout
+  </button>
+ </section>
+
+ <section class="heading">
+  <h2 id="sectionTitle">Recommended for You</h2>
+  <p style="color:#777;margin-top:5px">Find your favourite products at Mikyu.</p>
+ </section>
+
+ <section class="grid" id="products"></section>
+</main>
+
+<footer>
+ <h2>Mikyu</h2>
+ <p style="margin:10px">Your online shopping destination.</p>
+ <p>Help & Support | About Us | Contact</p>
+ <p style="margin-top:15px">© 2026 Mikyu. All rights reserved.</p>
+</footer>
+
+<script>
+const products = [
+ {id:1,name:"Wireless Headphones",price:799,old:1499,category:"Electronics",
+ img:"https://placehold.co/400x300/e8efff/244a9b?text=Headphones"},
+ {id:2,name:"Smart Watch",price:999,old:1999,category:"Electronics",
+ img:"https://placehold.co/400x300/e8efff/244a9b?text=Smart+Watch"},
+ {id:3,name:"Running Shoes",price:1199,old:1999,category:"Fashion",
+ img:"https://placehold.co/400x300/f5e8dc/7a4930?text=Shoes"},
+ {id:4,name:"Stylish T-Shirt",price:399,old:799,category:"Fashion",
+ img:"https://placehold.co/400x300/f3e5f5/71418a?text=T-Shirt"},
+ {id:5,name:"Beauty Care Kit",price:599,old:999,category:"Beauty",
+ img:"https://placehold.co/400x300/fce4ec/a02c58?text=Beauty+Kit"},
+ {id:6,name:"Face Cream",price:299,old:499,category:"Beauty",
+ img:"https://placehold.co/400x300/fce4ec/a02c58?text=Face+Cream"},
+ {id:7,name:"Home Lamp",price:699,old:1199,category:"Home",
+ img:"https://placehold.co/400x300/fff0d8/8b6124?text=Home+Lamp"},
+ {id:8,name:"Travel Bag",price:899,old:1499,category:"Accessories",
+ img:"https://placehold.co/400x300/e0f2f1/23665f?text=Travel+Bag"}
+];
+
+let category = "All";
+let cart = JSON.parse(localStorage.getItem("mikyuCart") || "{}");
+
+function money(n){return "₹"+n.toLocaleString("en-IN")}
+
+function renderProducts(){
+ const q = document.getElementById("search").value.toLowerCase();
+ const list = products.filter(p =>
+  (category==="All" || p.category===category) &&
+  p.name.toLowerCase().includes(q)
+ );
+ document.getElementById("sectionTitle").textContent =
+  category==="All" ? "Recommended for You" : category+" Products";
+
+ document.getElementById("products").innerHTML = list.length ? list.map(p=>`
+  <article class="card">
+   <img src="${p.img}" alt="${p.name}" loading="lazy">
+   <h3>${p.name}</h3>
+   <p class="price">${money(p.price)}
+    <span class="old">${money(p.old)}</span></p>
+   <p class="offer">${Math.round((1-p.price/p.old)*100)}% off</p>
+   <button onclick="addToCart(${p.id})">Add to Cart</button>
+   <button class="buy" onclick="buyNow(${p.id})">Buy Now</button>
+  </article>`).join("") :
+  '<div class="empty">No products found. Try another search.</div>';
+}
+
+function saveCart(){
+ localStorage.setItem("mikyuCart",JSON.stringify(cart));
+ updateCart();
+}
+
+function addToCart(id){
+ cart[id]=(cart[id]||0)+1;
+ saveCart();
+ alert("Product added to cart!");
+}
+
+function updateCart(){
+ const count=Object.values(cart).reduce((a,b)=>a+b,0);
+ document.getElementById("count").textContent=count;
+ const items=Object.entries(cart).filter(([id,q])=>q>0);
+ document.getElementById("cartItems").innerHTML=items.length?items.map(([id,q])=>{
+  const p=products.find(x=>x.id===Number(id));
+  if(!p)return "";
+  return `<div class="cartrow">
+   <b>${p.name}</b><p>${money(p.price)} × ${q}</p>
+   <button onclick="changeQty(${id},-1)">−</button>
+   <span style="padding:10px">${q}</span>
+   <button onclick="changeQty(${id},1)">+</button>
+   <button onclick="removeItem(${id})">Remove</button>
+  </div>`;
+ }).join(""):'<p class="empty">Your cart is empty.</p>';
+
+ const total=items.reduce((sum,[id,q])=>{
+  const p=products.find(x=>x.id===Number(id));
+  return sum+(p?p.price*q:0);
+ },0);
+ document.getElementById("total").textContent="Total: "+money(total);
+}
+
+function changeQty(id,n){
+ cart[id]=(cart[id]||0)+n;
+ if(cart[id]<=0)delete cart[id];
+ saveCart();
+}
+
+function removeItem(id){
+ delete cart[id];
+ saveCart();
+}
+
+function toggleCart(){
+ const panel=document.getElementById("cartPanel");
+ panel.style.display=panel.style.display==="block"?"none":"block";
+ updateCart();
+ panel.scrollIntoView({behavior:"smooth"});
+}
+
+function setCategory(c){
+ category=c;
+ renderProducts();
+ document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function buyNow(id){
+ addToCart(id);
+ toggleCart();
+}
+
+function checkout(){
+ alert("Demo store only. Online orders and payments are not connected yet.");
+}
+
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
