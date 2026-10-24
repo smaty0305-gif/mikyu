@@ -3,130 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MikyU - Flipkart Style</title>
+<title>Zelx</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,system-ui}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial}
 body{background:#f1f3f6;padding-bottom:70px}
-.fh{background:#2874f0;padding:10px;position:sticky;top:0;z-index:99;display:flex;gap:10px;align-items:center}
-.logo{color:#fff;font-weight:900;font-size:22px;font-style:italic}
-.logo span{color:#ffe500;font-size:11px;display:block;font-style:italic}
-.s{flex:1;padding:10px 12px;border:0;border-radius:2px}
-.cart{color:#fff;position:relative;font-size:20px} .cart b{position:absolute;top:-8px;right:-8px;background:#ff6161;border-radius:50%;padding:1px 6px;font-size:11px;color:#fff}
+.top{background:#2874f0;padding:10px;display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:100}
+.logo{color:#fff;font-weight:900;font-size:24px;font-style:italic;letter-spacing:1px} .logo span{color:#ffe500;font-size:11px;display:block}
+.search{flex:1;padding:10px;border:0;border-radius:2px}
+.cart{color:#fff;font-size:22px;position:relative} .cart b{position:absolute;top:-7px;right:-7px;background:red;border-radius:50%;font-size:11px;padding:2px 6px}
 .cat{background:#fff;display:flex;overflow:auto;box-shadow:0 1px 2px #0001}
-.cat div{padding:12px 16px;text-align:center;min-width:80px;font-size:12px;font-weight:500;border-right:1px solid #f0f0f0}
+.cat div{padding:12px 18px;font-size:12px;font-weight:600;border-right:1px solid #eee;white-space:nowrap}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}
-.card{background:#fff;border-radius:2px;padding:8px;box-shadow:0 1px 2px #0001}
+.card{background:#fff;padding:8px;border-radius:2px;box-shadow:0 1px 2px #0001}
 .card img{width:100%;height:140px;object-fit:contain}
-.cb h4{font-size:12px;height:32px;overflow:hidden;margin:4px 0}
-.assured{font-size:10px;color:#fff;background:#26a541;padding:1px 4px;border-radius:2px}
-.pr{font-weight:bold} .mrp{font-size:11px;color:#878787} .off{color:#26a541;font-size:11px}
-.rate{font-size:11px;background:#26a541;color:#fff;padding:2px 4px;border-radius:2px;display:inline-block}
-.btn{width:100%;padding:8px;border-radius:2px;font-weight:bold;font-size:13px;margin-top:4px;border:0}
-.btn1{background:#ff9f00;color:#fff} .btn2{background:#fb641b;color:#fff}
+.card h4{font-size:12px;height:32px;overflow:hidden}
+.price{font-weight:bold;font-size:14px} .mrp{color:#878787;font-size:11px} .off{color:#26a541;font-size:11px}
+.rate{background:#26a541;color:#fff;font-size:11px;padding:2px 5px;border-radius:2px}
+.assured{background:#26a541;color:#fff;font-size:10px;padding:1px 4px;border-radius:2px;margin-left:4px}
+.btn{width:100%;padding:9px;border:0;border-radius:2px;font-weight:bold;margin-top:5px}
+.b1{background:#ff9f00;color:#fff} .b2{background:#fb641b;color:#fff}
 .page{display:none;padding:8px} .page.on{display:block}
-.in{width:100%;padding:12px;border:1px solid #ddd;border-radius:2px;margin:5px 0}
-.box{background:#fff;padding:10px;border-radius:2px;margin:8px 0;box-shadow:0 1px 2px #0001}
-.bottom{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:99}
-.bottom div{font-size:11px;text-align:center;color:#666} .bottom .on{color:#2874f0}
+.input{width:100%;padding:12px;border:1px solid #ddd;border-radius:2px;margin:6px 0}
+.box{background:#fff;padding:12px;border-radius:2px;margin:8px 0;box-shadow:0 1px 2px #0001}
+.bottom{position:fixed;bottom:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:100}
+.bottom div{font-size:11px;text-align:center}
 </style>
 </head>
 <body>
-
-<div class="fh">
-<div class="logo">MikyU<span>Explore Plus ✨</span></div>
-<input id="sr" class="s" placeholder="Search for products, brands and more" oninput="fil()">
-<div class="cart" onclick="op('cart')">🛒<b id="cc">0</b></div>
-<div style="color:#fff;font-size:11px;font-weight:bold" onclick="op('admin')">Admin</div>
+<div class="top">
+<div class="logo">ZELX<span>Explore Plus</span></div>
+<input id="sr" class="search" placeholder="Search for products, brands and more" oninput="searchF()">
+<div class="cart" onclick="openP('cart')">🛒<b id="cc">0</b></div>
+<div style="color:#fff;font-size:11px;font-weight:bold" onclick="openP('admin')">Admin</div>
 </div>
-
 <div class="cat">
-<div onclick="cat('all',this)">All</div>
-<div onclick="cat('fashion',this)">Fashion</div>
-<div onclick="cat('electronics',this)">Electronics</div>
-<div onclick="cat('beauty',this)">Beauty</div>
-<div onclick="cat('mobiles',this)">Mobiles</div>
+<div onclick="catF('all')">All</div>
+<div onclick="catF('fashion')">Fashion</div>
+<div onclick="catF('mobiles')">Mobiles</div>
+<div onclick="catF('electronics')">Electronics</div>
+<div onclick="catF('beauty')">Beauty</div>
 </div>
-
 <div id="p-home" class="page on">
-<div style="background:#fff;margin:8px;padding:10px;border-radius:2px;box-shadow:0 1px 2px #0001;display:flex;justify-content:space-between">
-<h3>Big Billion Days Sale</h3><span style="background:#2874f0;color:#fff;padding:4px 8px;border-radius:2px;font-size:11px">EMI Available</span>
+<div class="box" style="display:flex;justify-content:space-between;align-items:center">
+<h3>Big Billion Days</h3><span style="background:#2874f0;color:#fff;padding:5px 10px;border-radius:2px;font-size:11px">No Cost EMI</span>
 </div>
-<div style="background:#fff;margin:8px;padding:8px;border-radius:2px;font-size:11px;display:flex;justify-content:space-between">
-<span>✓ Assured</span><span>✓ COD</span><span>✓ 7 Days Return</span><span>✓ EMI</span>
-</div>
+<div class="box" style="font-size:11px;display:flex;justify-content:space-between"><span>✓ Assured</span><span>✓ Free Delivery</span><span>✓ 7 Days Return</span><span>✓ EMI</span></div>
 <div id="plist" class="grid"></div>
 </div>
-
 <div id="p-detail" class="page"><div id="dbox"></div></div>
-
-<div id="p-cart" class="page">
-<h3>Cart</h3>
-<div id="cbox"></div>
-<div class="box">
-<p id="totalBox" style="font-weight:bold"></p>
-<input id="addr" class="in" placeholder="Delivery Address">
-<input id="ph" class="in" placeholder="Phone Number">
-<select id="pay" class="in"><option>COD</option><option>UPI</option><option>Card + EMI</option></select>
-<button class="btn btn1" onclick="op('home')">Continue Shopping</button>
-<button class="btn btn2" onclick="place()">Place Order</button>
-<button class="btn" style="background:#25D366;color:#fff" onclick="worder()">WhatsApp Order</button>
-</div>
-</div>
-
+<div id="p-cart" class="page"><h3>My Cart</h3><div id="cbox"></div><div class="box"><p id="total" style="font-weight:bold"></p><input id="addr" class="input" placeholder="Full Delivery Address"><input id="ph" class="input" placeholder="Phone Number"><select class="input"><option>COD</option><option>UPI</option><option>Card + EMI</option></select><button class="btn b1" onclick="openP('home')">Continue Shopping</button><button class="btn b2" onclick="placeO()">Place Order</button></div></div>
 <div id="p-orders" class="page"><h3>My Orders</h3><div id="obox"></div></div>
-
-<div id="p-seller" class="page">
-<h3>Become a Seller - 0% Commission</h3>
-<div class="box">
-<input id="sn" class="in" placeholder="Product Name">
-<input id="sp" class="in" type="number" placeholder="Price">
-<input id="sm" class="in" placeholder="Image Link">
-<select id="sc" class="in"><option value="fashion">Fashion</option><option value="electronics">Electronics</option><option value="beauty">Beauty</option><option value="mobiles">Mobiles</option></select>
-<textarea id="sd" class="in" placeholder="Description"></textarea>
-<button class="btn btn2" onclick="addP()">List Product</button>
-</div>
-<div id="slist"></div>
-</div>
-
-<div id="p-admin" class="page"><h3>Admin</h3><div class="box">Products: <b id="pc">0</b> | Orders: <b id="oc">0</b></div><div id="alist"></div><button class="btn btn1" onclick="clearAll()">Clear All</button></div>
+<div id="p-seller" class="page"><h3>Become a Seller</h3><div class="box"><input id="sn" class="input" placeholder="Product Name"><input id="sp" class="input" type="number" placeholder="Price"><input id="si" class="input" placeholder="Image URL"><select id="sc" class="input"><option value="fashion">Fashion</option><option value="mobiles">Mobiles</option><option value="electronics">Electronics</option><option value="beauty">Beauty</option></select><textarea id="sd" class="input" placeholder="Description"></textarea><button class="btn b2" onclick="addP()">List Product</button></div><div id="slist"></div></div>
+<div id="p-admin" class="page"><h3>Admin Panel</h3><div class="box">Products: <b id="pc">0</b> | Orders: <b id="oc">0</b></div><div id="alist"></div><button class="btn b1" onclick="clearA()">Clear All Data</button></div>
 <div id="p-wish" class="page"><h3>Wishlist</h3><div id="wbox" class="grid"></div></div>
-
 <div class="bottom">
-<div class="on" onclick="op('home')">🏠<br>Home</div>
-<div onclick="op('orders')">📦<br>Orders</div>
-<div onclick="op('seller')">🏪<br>Sell</div>
-<div onclick="op('wish')">❤️<br>Wishlist</div>
-<div onclick="op('cart')">🛒<br>Cart</div>
+<div onclick="openP('home')">🏠<br>Home</div>
+<div onclick="openP('orders')">📦<br>Orders</div>
+<div onclick="openP('seller')">🏪<br>Sell</div>
+<div onclick="openP('wish')">❤️<br>Wish</div>
+<div onclick="openP('cart')">🛒<br>Cart</div>
 </div>
-
 <script>
-let products=JSON.parse(localStorage.getItem('fk2_products'))||[
-{id:1,name:"Silk Saree Wedding - Assured",price:1299,mrp:2499,cat:"fashion",img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400",rating:"4.5",reviews:"1,240",spec:"6m Saree + Blouse"},
-{id:2,name:"Cotton Lungi Blue Check",price:499,mrp:799,cat:"fashion",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400",rating:"4.3",reviews:"820",spec:"2m Cotton"},
-{id:3,name:"Kids Floral Dress",price:799,mrp:1499,cat:"fashion",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400",rating:"4.4",reviews:"600",spec:"Age 2-8"},
-{id:4,name:"Realme Narzo Mobile 128GB",price:9999,mrp:14999,cat:"mobiles",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400",rating:"4.5",reviews:"5k",spec:"6GB RAM, 50MP Camera"},
-{id:5,name:"Boat Smart Watch",price:1999,mrp:4999,cat:"electronics",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",rating:"4.2",reviews:"2k",spec:"1 Year Warranty"},
-{id:6,name:"Beauty Combo Pack",price:499,mrp:999,cat:"beauty",img:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400",rating:"4.1",reviews:"400",spec:"Face Wash + Cream"}
+let products=JSON.parse(localStorage.getItem('products'))||[
+{id:1,name:"Men's Cotton T-Shirt - Assured",price:499,mrp:999,cat:"fashion",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",rating:"4.3",reviews:"1.2k",spec:"Cotton, Regular Fit"},
+{id:2,name:"Women Saree Silk - Assured",price:1299,mrp:2499,cat:"fashion",img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400",rating:"4.5",reviews:"2k",spec:"6m + Blouse"},
+{id:3,name:"Mobile 128GB - Assured",price:10999,mrp:15999,cat:"mobiles",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400",rating:"4.5",reviews:"8k",spec:"6GB RAM, 50MP"},
+{id:4,name:"Smartwatch - Assured",price:1999,mrp:4999,cat:"electronics",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",rating:"4.2",reviews:"3k",spec:"1 Year Warranty"},
+{id:5,name:"Face Cream Combo - Assured",price:599,mrp:1199,cat:"beauty",img:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400",rating:"4.1",reviews:"900",spec:"Combo Pack"},
+{id:6,name:"Kids Dress - Assured",price:799,mrp:1499,cat:"fashion",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400",rating:"4.4",reviews:"1k",spec:"Age 3-8"}
 ];
-let cart=JSON.parse(localStorage.getItem('fk2_cart'))||[];let orders=JSON.parse(localStorage.getItem('fk2_orders'))||[];let wish=JSON.parse(localStorage.getItem('fk2_wish'))||[];
-function save(){localStorage.setItem('fk2_products',JSON.stringify(products));localStorage.setItem('fk2_cart',JSON.stringify(cart));localStorage.setItem('fk2_orders',JSON.stringify(orders));localStorage.setItem('fk2_wish',JSON.stringify(wish));}
-function render(list=products){let h="";list.forEach(p=>{h+=`<div class="card"><img src="${p.img}" onclick="detail(${p.id})"><div><h4>${p.name}</h4><div><span class="rate">${p.rating} ★</span> <span style="font-size:11px;color:#878787">(${p.reviews})</span> <span class="assured">✓ Assured</span></div><div class="pr">₹${p.price} <span class="mrp"><s>₹${p.mrp}</s> <span class="off">${Math.round((1-p.price/p.mrp)*100)}% off</span></span></div><button class="btn btn1" onclick="addW(${p.id})">♡ Wishlist</button><button class="btn btn2" onclick="addC(${p.id})">Add to Cart</button></div></div>`;});document.getElementById('plist').innerHTML=h;document.getElementById('pc').innerText=products.length;document.getElementById('oc').innerText=orders.length;document.getElementById('cc').innerText=cart.length;document.getElementById('alist').innerHTML=h;document.getElementById('slist').innerHTML=h;}
-function addC(id){let p=products.find(x=>x.id==id);cart.push(p);save();render();alert("Added to Cart!");op('cart');showC();}
-function addW(id){let p=products.find(x=>x.id==id);if(!wish.find(x=>x.id==id)){wish.push(p);save();}alert("Wishlist added!");showW();}
-function showC(){if(cart.length==0){document.getElementById('cbox').innerHTML="<p>Empty</p>";return;}let t=0,tx="";cart.forEach(p=>{t+=p.price;tx+=`<div class="box">${p.name} - ₹${p.price} <span onclick="remC(${p.id})" style="float:right;color:red">X</span></div>`});document.getElementById('cbox').innerHTML=tx;document.getElementById('totalBox').innerText=`Total: ₹${t} | Free Delivery`;}
-function remC(id){cart=cart.filter(x=>x.id!=id);save();render();showC();}
-function showW(){let h="";wish.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div><h4>${p.name}</h4><div class="pr">₹${p.price}</div><button class="btn btn2" onclick="addC(${p.id})">Move to Cart</button></div></div>`});document.getElementById('wbox').innerHTML=h||"Empty";}
-function detail(id){let p=products.find(x=>x.id==id);document.getElementById('dbox').innerHTML=`<div class="box"><img src="${p.img}" style="width:100%;height:250px;object-fit:contain"><h3>${p.name}</h3><div><span class="rate">${p.rating} ★</span> ${p.reviews} Ratings <span class="assured">Assured</span></div><div class="pr">₹${p.price} <s>₹${p.mrp}</s> ${Math.round((1-p.price/p.mrp)*100)}% off</div><p style="font-size:12px;margin:6px 0">${p.spec}</p><p style="font-size:11px;background:#f5f5f5;padding:6px">✓ Free Delivery ✓ 7 Days Return ✓ EMI ✓ COD</p><button class="btn btn1" onclick="addC(${p.id})">Add to Cart</button><button class="btn btn2" onclick="buyNow(${p.id})">Buy Now</button></div>`;op('detail');}
-function buyNow(id){addC(id);op('cart');}
-function place(){if(cart.length==0)return alert("Empty");let a=document.getElementById('addr').value,ph=document.getElementById('ph').value;if(!a||!ph)return alert("Address & Phone must");let t=cart.reduce((a,b)=>a+b.price,0);orders.unshift({id:Date.now(),items:[...cart],total:t,addr:a,ph:ph,status:"Ordered",date:new Date().toLocaleDateString()});cart=[];save();render();showO();alert(`Order Placed! ₹${t}`);op('orders');}
-function worder(){if(cart.length==0)return alert("Empty");let msg=`Order:%0A`;cart.forEach(p=>msg+=p.name+" - ₹"+p.price+"%0A");window.open("https://wa.me/919999999999?text="+msg,"_blank");}
-function showO(){let h="";orders.forEach(o=>{h+=`<div class="box"><b>Order #${o.id}</b> - ${o.date}<br>${o.items.map(i=>i.name).join(", ")}<br>Total: ₹${o.total}<br>Status: ${o.status}<br><small>Ordered → Packed → Shipped → Delivered</small><br><button class="btn btn1" style="width:auto;padding:4px 8px" onclick="nextStatus(${o.id})">Next Status</button></div>`});document.getElementById('obox').innerHTML=h||"No orders";}
-function nextStatus(id){let o=orders.find(x=>x.id==id);if(o.status=="Ordered")o.status="Packed";else if(o.status=="Packed")o.status="Shipped";else if(o.status=="Shipped")o.status="Delivered";save();showO();}
-function op(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById('p-'+p).classList.add('on');if(p=='cart')showC();if(p=='orders')showO();if(p=='wish')showW();window.scrollTo(0,0);}
-function cat(c,el){document.querySelectorAll('.cat div').forEach(x=>x.style.color="");el.style.color="#2874f0";if(c=='all')render();else render(products.filter(x=>x.cat==c));}
-function fil(){let q=document.getElementById('sr').value.toLowerCase();render(products.filter(x=>x.name.toLowerCase().includes(q)));}
-function addP(){let n=document.getElementById('sn').value,p=document.getElementById('sp').value,i=document.getElementById('sm').value,c=document.getElementById('sc').value,d=document.getElementById('sd').value;if(!n||!p)return alert("Name & Price must");products.unshift({id:Date.now(),name:n,price:parseInt(p),mrp:parseInt(p)+500,cat:c,img:i||'https://via.placeholder.com/300',rating:'4.5',reviews:'New',spec:d||'New'});save();render();alert("Product Live!");op('home');}
-function clearAll(){if(confirm("Delete all?")){localStorage.clear();location.reload();}}
+let cart=JSON.parse(localStorage.getItem('cart'))||[];let orders=JSON.parse(localStorage.getItem('orders'))||[];let wish=JSON.parse(localStorage.getItem('wish'))||[];
+function save(){localStorage.setItem('products',JSON.stringify(products));localStorage.setItem('cart',JSON.stringify(cart));localStorage.setItem('orders',JSON.stringify(orders));localStorage.setItem('wish',JSON.stringify(wish));}
+function render(list=products){let h="";list.forEach(p=>{h+=`<div class="card"><img src="${p.img}" onclick="showD(${p.id})"><h4>${p.name}</h4><div><span class="rate">${p.rating} ★</span> <span class="mrp">(${p.reviews})</span><span class="assured">✓ Assured</span></div><div class="price">₹${p.price} <span class="mrp"><s>₹${p.mrp}</s> <span class="off">${Math.round((1-p.price/p.mrp)*100)}% off</span></span></div><div style="font-size:10px;color:#26a541">Free Delivery • EMI</div><button class="btn b1" onclick="addW(${p.id})">♡ Wishlist</button><button class="btn b2" onclick="addC(${p.id})">Add to Cart</button></div>`});document.getElementById('plist').innerHTML=h;document.getElementById('pc').innerText=products.length;document.getElementById('oc').innerText=orders.length;document.getElementById('cc').innerText=cart.length;document.getElementById('alist').innerHTML=h;document.getElementById('slist').innerHTML=h;}
+function addC(id){cart.push(products.find(x=>x.id==id));save();render();alert("Added to Cart!");openP('cart');showC();}
+function addW(id){let p=products.find(x=>x.id==id);if(!wish.find(x=>x.id==id))wish.push(p);save();alert("Wishlist Added!");showW();}
+function showC(){if(cart.length==0){document.getElementById('cbox').innerHTML="<p>Cart Empty</p>";return;}let t=0,tx="";cart.forEach((p,i)=>{t+=p.price;tx+=`<div class="box">${p.name} - ₹${p.price} <span onclick="remC(${i})" style="float:right;color:red">Remove</span></div>`});document.getElementById('cbox').innerHTML=tx;document.getElementById('total').innerText="Total: ₹"+t+" | Free Delivery | Assured";}
+function remC(i){cart.splice(i,1);save();render();showC();}
+function showW(){let h="";wish.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><h4>${p.name}</h4><div class="price">₹${p.price}</div><button class="btn b2" onclick="addC(${p.id})">Move to Cart</button></div>`});document.getElementById('wbox').innerHTML=h||"Empty";}
+function showD(id){let p=products.find(x=>x.id==id);document.getElementById('dbox').innerHTML=`<div class="box"><img src="${p.img}" style="width:100%;height:250px;object-fit:contain"><h3>${p.name}</h3><div><span class="rate">${p.rating} ★</span> ${p.reviews} Ratings <span class="assured">Assured</span></div><div class="price">₹${p.price} <s class="mrp">₹${p.mrp}</s> ${Math.round((1-p.price/p.mrp)*100)}% off</div><p style="font-size:12px;margin:6px 0">${p.spec}</p><div style="font-size:11px;background:#f0f0f0;padding:6px">✓ Free Delivery ✓ 7 Days Return ✓ No Cost EMI ✓ Exchange ✓ COD ✓ Assured</div><button class="btn b1" onclick="addC(${p.id})">Add to Cart</button><button class="btn b2" onclick="addC(${p.id});openP('cart')">Buy Now</button></div>`;openP('detail');}
+function placeO(){if(cart.length==0)return alert("Empty");let a=document.getElementById('addr').value,ph=document.getElementById('ph').value;if(!a||!ph)return alert("Address & Phone required");let t=cart.reduce((s,p)=>s+p.price,0);orders.unshift({id:Date.now(),items:[...cart],total:t,addr:a,ph:ph,status:"Ordered",date:new Date().toLocaleDateString()});cart=[];save();render();showO();alert("Order Placed! ₹"+t);openP('orders');}
+function showO(){let h="";orders.forEach(o=>{h+=`<div class="box"><b>Order #${o.id}</b> - ${o.date}<br>${o.items.map(i=>i.name).join(", ")}<br>Total: ₹${o.total}<br>Status: <b style="background:#e6f5ec;padding:2px 6px">${o.status}</b><br><small>Ordered → Packed → Shipped → Delivered</small><br><button class="btn b1" style="width:auto;padding:5px 10px" onclick="nextS(${o.id})">Next Status</button></div>`});document.getElementById('obox').innerHTML=h||"No Orders";}
+function nextS(id){let o=orders.find(x=>x.id==id);if(o.status=="Ordered")o.status="Packed";else if(o.status=="Packed")o.status="Shipped";else if(o.status=="Shipped")o.status="Delivered";save();showO();}
+function openP(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById('p-'+p).classList.add('on');if(p=='cart')showC();if(p=='orders')showO();if(p=='wish')showW();window.scrollTo(0,0);}
+function catF(c){if(c=='all')render();else render(products.filter(x=>x.cat==c));}
+function searchF(){let q=document.getElementById('sr').value.toLowerCase();render(products.filter(x=>x.name.toLowerCase().includes(q)));}
+function addP(){let n=document.getElementById('sn').value,p=document.getElementById('sp').value,i=document.getElementById('si').value,c=document.getElementById('sc').value,d=document.getElementById('sd').value;if(!n||!p)return alert("Name & Price needed");products.unshift({id:Date.now(),name:n,price:parseInt(p),mrp:parseInt(p)+500,cat:c,img:i||'https://via.placeholder.com/300',rating:"4.5",reviews:"New",spec:d});save();render();alert("Product Live!");openP('home');}
+function clearA(){if(confirm("Delete all?")){localStorage.clear();location.reload();}}
 render();showC();showO();showW();
 </script>
 </body>
