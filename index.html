@@ -3,102 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ZELX - Premium</title>
+<title>ZELX LUXE - Premium Branded</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Roboto,Arial}
-body{background:#f8fdf8;padding-bottom:75px}
-.top{background:linear-gradient(135deg,#66bb6a,#43a047);padding:14px;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 15px #43a04744}
-.logo{color:#fff;font-weight:900;font-size:28px;letter-spacing:1px;text-shadow:0 2px 4px #0002} .logo span{color:#e8f5e9;font-size:11px;display:block;font-weight:600;letter-spacing:0.5px}
-.search{flex:1;padding:12px 16px;border:0;border-radius:25px;background:#fff;box-shadow:0 2px 8px #0001;font-size:13px}
-.cart{color:#fff;font-size:24px;position:relative;background:#ffffff22;padding:6px 10px;border-radius:50%} .cart b{position:absolute;top:-6px;right:-4px;background:#ff3d00;color:#fff;border-radius:50%;font-size:10px;padding:3px 7px;font-weight:900;border:2px solid #fff}
-.cat{background:#fff;display:flex;overflow:auto;padding:10px 8px;gap:8px;box-shadow:0 2px 8px #0001;position:sticky;top:66px;z-index:90}
-.cat div{padding:9px 18px;font-size:12px;font-weight:700;white-space:nowrap;background:#e8f5e9;border-radius:25px;color:#2e7d32;border:1px solid #c8e6c9;transition:0.2s} .cat div:hover{background:#43a047;color:#fff}
-.banner{background:linear-gradient(135deg,#81c784,#43a047,#2e7d32);color:#fff;padding:20px;border-radius:18px;margin:12px;text-align:center;box-shadow:0 8px 20px #43a04755;position:relative;overflow:hidden}
-.banner::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:#ffffff22;border-radius:50%}
-.banner h2{font-size:20px;font-weight:800} .banner p{font-size:12px;margin-top:6px;opacity:0.9}
-.features{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#fff;margin:10px;border-radius:14px;padding:12px;box-shadow:0 2px 10px #0001}
-.features div{text-align:center;font-size:11px;font-weight:600;color:#2e7d32} .features div span{font-size:18px;display:block}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
-.card{background:#fff;padding:12px;border-radius:16px;box-shadow:0 4px 15px #0001;border:1px solid #e8f5e9;transition:0.3s;overflow:hidden}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px #43a04722}
-.card img{width:100%;height:155px;object-fit:contain;border-radius:12px;background:#f8fdf8}
-.card h4{font-size:12.5px;height:34px;overflow:hidden;margin:8px 0 4px 0;line-height:16px;font-weight:600}
-.price{font-weight:800;color:#2e7d32;font-size:15px} .mrp{color:#999;font-size:11px} .off{color:#fff;background:#43a047;font-size:10px;padding:2px 6px;border-radius:10px;margin-left:4px}
-.rate{background:#43a047;color:#fff;font-size:11px;padding:3px 8px;border-radius:12px;font-weight:700} .assured{font-size:10px;color:#43a047;background:#e8f5e9;padding:2px 6px;border-radius:8px;border:1px solid #c8e6c9}
-.free{font-size:10px;color:#fff;background:linear-gradient(135deg,#66bb6a,#43a047);padding:4px 8px;border-radius:12px;display:inline-block;margin-top:5px;font-weight:700}
-.btn{width:100%;padding:11px;border:0;border-radius:12px;font-weight:800;margin-top:7px;font-size:12px;transition:0.2s}
-.b1{background:#e8f5e9;color:#2e7d32;border:1.5px solid #a5d6a7} .b1:hover{background:#c8e6c9}
-.b2{background:linear-gradient(135deg,#66bb6a,#43a047);color:#fff;box-shadow:0 3px 10px #43a04744} .b2:hover{transform:scale(1.02)}
-.page{display:none;padding:0 4px} .page.on{display:block;animation:fade 0.3s}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.input{width:100%;padding:14px;border:1.5px solid #c8e6c9;border-radius:12px;margin:7px 0;background:#fff;font-size:13px}
-.input:focus{outline:none;border-color:#43a047;box-shadow:0 0 0 3px #43a04722}
-.box{background:#fff;padding:16px;border-radius:16px;margin:10px 0;box-shadow:0 4px 15px #0001;border:1px solid #e8f5e9}
-.bottom{position:fixed;bottom:0;width:100%;background:#ffffffee;backdrop-filter:blur(10px);display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #e8f5e9;z-index:100;box-shadow:0 -4px 15px #0001}
-.bottom div{font-size:10px;text-align:center;color:#81a884;font-weight:600;transition:0.2s} .bottom div.on{color:#43a047;transform:scale(1.1);font-weight:800}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;padding-bottom:80px;font-family:'Inter',sans-serif}
+.top{background:#0a0a0a;padding:16px 14px;display:flex;gap:14px;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid #d4af37}
+.logo{font-family:'Playfair Display',serif;color:#fff;font-weight:900;font-size:30px;letter-spacing:3px} .logo span{color:#d4af37;font-size:9px;display:block;letter-spacing:4px;font-weight:600;margin-top:2px;font-family:'Inter'}
+.search{flex:1;padding:13px 18px;border:1px solid #2a2a2a;border-radius:0;background:#1a1a1a;color:#fff;letter-spacing:0.5px} .search::placeholder{color:#777}
+.cart{color:#d4af37;font-size:22px;position:relative;border:1px solid #d4af37;padding:8px 12px} .cart b{position:absolute;top:-8px;right:-8px;background:#d4af37;color:#000;border-radius:0;font-size:9px;padding:3px 6px;font-weight:900}
+.cat{background:#fff;display:flex;overflow:auto;padding:12px 10px;gap:10px;border-bottom:1px solid #eee;position:sticky;top:70px;z-index:90}
+.cat div{padding:10px 22px;font-size:11px;font-weight:700;white-space:nowrap;background:#fff;border:1px solid #000;color:#000;letter-spacing:1px;text-transform:uppercase;transition:0.3s} .cat div:hover{background:#000;color:#d4af37;border-color:#d4af37}
+.banner{background:#000;color:#fff;padding:28px 20px;margin:14px;text-align:center;position:relative;border:1px solid #d4af37}
+.banner::after{content:'LUXURY COLLECTION';position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:5px;color:#d4af37}
+.banner h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;letter-spacing:2px;margin-top:10px} .banner p{font-size:11px;margin-top:8px;letter-spacing:2px;color:#999;text-transform:uppercase}
+.features{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#000;margin:0 14px;padding:14px;border:1px solid #222}
+.features div{text-align:center;font-size:9px;letter-spacing:1.5px;color:#d4af37;text-transform:uppercase} .features div span{font-size:16px;display:block;margin-bottom:4px;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px}
+.card{background:#fff;padding:0;border-radius:0;border:1px solid #eee;transition:0.4s;overflow:hidden;position:relative}
+.card:hover{border-color:#000;box-shadow:0 20px 40px #0001}
+.card img{width:100%;height:180px;object-fit:contain;background:#fafaf7;padding:10px}
+.card-content{padding:14px}
+.card h4{font-size:12px;height:36px;overflow:hidden;line-height:16px;font-weight:600;letter-spacing:0.3px;text-transform:uppercase}
+.price{font-weight:900;font-size:15px;letter-spacing:0.5px;margin-top:6px} .mrp{color:#999;font-size:10px;letter-spacing:0.5px} .off{color:#d4af37;background:#000;font-size:9px;padding:3px 7px;margin-left:6px;letter-spacing:1px}
+.rate{background:#000;color:#d4af37;font-size:10px;padding:3px 8px;font-weight:700;letter-spacing:1px} .brand{font-size:8px;letter-spacing:2px;color:#d4af37;background:#000;padding:3px 8px;position:absolute;top:10px;left:10px;text-transform:uppercase}
+.free{font-size:8px;color:#000;background:#fff;border:1px solid #000;padding:4px 8px;display:inline-block;margin-top:8px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.btn{width:100%;padding:12px;border-radius:0;font-weight:800;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:8px;transition:0.3s}
+.b1{background:#fff;color:#000;border:1px solid #000} .b1:hover{background:#000;color:#d4af37}
+.b2{background:#000;color:#d4af37;border:1px solid #000} .b2:hover{background:#d4af37;color:#000}
+.page{display:none;padding:0 4px} .page.on{display:block;animation:lux 0.5s}
+@keyframes lux{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.input{width:100%;padding:15px;border:1px solid #000;border-radius:0;margin:8px 0;background:#fff;font-size:12px;letter-spacing:0.5px}
+.box{background:#fff;padding:18px;margin:12px 0;border:1px solid #eee}
+.bottom{position:fixed;bottom:0;width:100%;background:#000;display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid #d4af37;z-index:100}
+.bottom div{font-size:9px;text-align:center;color:#777;letter-spacing:1.5px;text-transform:uppercase;font-weight:600} .bottom div.on{color:#d4af37}
+.luxe-line{height:1px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:10px 0}
 </style>
 </head>
 <body>
 <div class="top">
-<div class="logo">ZELX<span>Premium • Lowest Price</span></div>
-<input id="sr" class="search" placeholder="🔍 Saree, Kurti, Mobile... Search" oninput="searchF()">
-<div class="cart" onclick="openP('cart')">🛒<b id="cc">0</b></div>
-<div style="color:#fff;font-size:11px;font-weight:800;background:#ffffff22;padding:6px 10px;border-radius:20px" onclick="openP('admin')">Admin</div>
+<div class="logo">ZELX<span>LUXE • BRANDED</span></div>
+<input id="sr" class="search" placeholder="SEARCH SAREE, KURTI, BRANDS" oninput="searchF()">
+<div class="cart" onclick="openP('cart')">👜<b id="cc">0</b></div>
+<div style="color:#d4af37;font-size:9px;font-weight:800;border:1px solid #d4af37;padding:7px 12px;letter-spacing:2px" onclick="openP('admin')">ADMIN</div>
 </div>
+
 <div class="cat">
-<div onclick="catF('all')">✨ All</div>
-<div onclick="catF('fashion')">👗 Fashion</div>
-<div onclick="catF('mobiles')">📱 Mobiles</div>
-<div onclick="catF('electronics')">🎧 Electronics</div>
-<div onclick="catF('beauty')">💄 Beauty</div>
-<div onclick="catF('kids')">🧒 Kids</div>
+<div onclick="catF('all')">All Atelier</div>
+<div onclick="catF('fashion')">Couture</div>
+<div onclick="catF('mobiles')">Tech Luxe</div>
+<div onclick="catF('electronics')">Audio Luxe</div>
+<div onclick="catF('beauty')">Beaute</div>
+<div onclick="catF('kids')">Petite</div>
 </div>
+
 <div id="p-home" class="page on">
-<div class="banner"><h2>🌟 ZELX MEGA FESTIVAL 🌟</h2><p>Up to 80% OFF • Free Delivery • Lowest Price Guaranteed</p></div>
-<div class="features"><div><span>🚚</span>Free Delivery</div><div><span>💵</span>COD</div><div><span>↩️</span>7 Days Return</div><div><span>⭐</span>Lowest Price</div></div>
+<div class="banner"><h2>ZELX LUXE EDITION</h2><p>Curated Luxury • Branded Authentic • Worldwide Atelier</p></div>
+<div class="features"><div><span>✈️</span>Global Shipping</div><div><span>🛡️</span>Authentic</div><div><span>↩️</span>Elite Return</div><div><span>👑</span>Luxe Price</div></div>
+<div style="text-align:center;padding:14px;font-size:10px;letter-spacing:4px;color:#000">— FEATURED ATELIER —</div>
 <div id="plist" class="grid"></div>
 </div>
+
 <div id="p-detail" class="page"><div id="dbox"></div></div>
-<div id="p-cart" class="page"><h3 style="color:#2e7d32;margin:12px">🛒 My Cart</h3><div id="cbox"></div><div class="box"><p id="total" style="font-weight:800;color:#2e7d32;font-size:16px"></p><input id="addr" class="input" placeholder="🏠 Full Delivery Address"><input id="ph" class="input" placeholder="📞 Phone Number"><select class="input"><option>💵 Cash on Delivery</option><option>📱 UPI / Online</option></select><button class="btn b1" onclick="openP('home')">← Continue Shopping</button><button class="btn b2" onclick="placeO()">🛍️ Place Order</button></div></div>
-<div id="p-orders" class="page"><h3 style="color:#2e7d32;margin:12px">📦 My Orders</h3><div id="obox"></div></div>
-<div id="p-seller" class="page"><h3 style="color:#2e7d32;margin:12px">🏪 Become Supplier</h3><div class="box"><input id="sn" class="input" placeholder="Product Name"><input id="sp" class="input" type="number" placeholder="Price ₹"><input id="si" class="input" placeholder="Image URL https://..."><select id="sc" class="input"><option value="fashion">Fashion</option><option value="mobiles">Mobiles</option><option value="electronics">Electronics</option><option value="beauty">Beauty</option><option value="kids">Kids</option></select><textarea id="sd" class="input" placeholder="Details"></textarea><button class="btn b2" onclick="addP()">+ Add to ZELX</button></div><div id="slist"></div></div>
-<div id="p-admin" class="page"><h3 style="color:#2e7d32;margin:12px">⚙️ ZELX Admin Premium</h3><div class="box" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">Products: <b id="pc">0</b> | Orders: <b id="oc">0</b> | Theme: Premium Green</div><div id="alist"></div><button class="btn b1" onclick="clearA()">Clear All Data</button></div>
-<div id="p-wish" class="page"><h3 style="color:#2e7d32;margin:12px">❤️ Wishlist</h3><div id="wbox" class="grid"></div></div>
+<div id="p-cart" class="page"><h3 style="font-family:'Playfair Display';margin:16px;letter-spacing:2px">YOUR ATELIER BAG</h3><div id="cbox"></div><div class="box"><p id="total" style="font-weight:900;font-size:18px;letter-spacing:1px"></p><div class="luxe-line"></div><input id="addr" class="input" placeholder="ATELIER ADDRESS"><input id="ph" class="input" placeholder="CONCIERGE NUMBER"><select class="input"><option>Cash On Delivery</option><option>Luxe Pay</option></select><button class="btn b1" onclick="openP('home')">Continue Atelier</button><button class="btn b2" onclick="placeO()">Place Atelier Order</button></div></div>
+<div id="p-orders" class="page"><h3 style="font-family:'Playfair Display';margin:16px;letter-spacing:2px">ATELIER ORDERS</h3><div id="obox"></div></div>
+<div id="p-seller" class="page"><h3 style="font-family:'Playfair Display';margin:16px;letter-spacing:2px">BECOME ATELIER</h3><div class="box"><input id="sn" class="input" placeholder="Product Name - Branded"><input id="sp" class="input" type="number" placeholder="Price ₹"><input id="si" class="input" placeholder="Image URL"><select id="sc" class="input"><option value="fashion">Couture</option><option value="mobiles">Tech Luxe</option><option value="electronics">Audio Luxe</option><option value="beauty">Beaute</option><option value="kids">Petite</option></select><textarea id="sd" class="input" placeholder="Atelier Details"></textarea><button class="btn b2" onclick="addP()">Add To Atelier</button></div><div id="slist"></div></div>
+<div id="p-admin" class="page"><h3 style="font-family:'Playfair Display';margin:16px;letter-spacing:2px">LUXE ADMIN</h3><div class="box" style="background:#000;color:#d4af37;border:1px solid #d4af37">Atelier: <b id="pc">0</b> | Orders: <b id="oc">0</b> | Edition: Luxe Branded</div><div id="alist"></div><button class="btn b1" onclick="clearA()">Clear Atelier</button></div>
+<div id="p-wish" class="page"><h3 style="font-family:'Playfair Display';margin:16px;letter-spacing:2px">WISHLIST ATELIER</h3><div id="wbox" class="grid"></div></div>
+
 <div class="bottom">
-<div id="bn-home" class="on" onclick="openP('home')">🏠<br>Home</div>
-<div id="bn-orders" onclick="openP('orders')">📦<br>Orders</div>
-<div id="bn-seller" onclick="openP('seller')">🏪<br>Sell</div>
-<div id="bn-wish" onclick="openP('wish')">❤️<br>Wish</div>
-<div id="bn-cart" onclick="openP('cart')">🛒<br>Cart</div>
+<div id="bn-home" class="on" onclick="openP('home')">⌂<br>Atelier</div>
+<div id="bn-orders" onclick="openP('orders')">◫<br>Orders</div>
+<div id="bn-seller" onclick="openP('seller')">✦<br>Sell Luxe</div>
+<div id="bn-wish" onclick="openP('wish')">♡<br>Wishlist</div>
+<div id="bn-cart" onclick="openP('cart')">◐<br>Bag</div>
 </div>
+
 <script>
-let products=JSON.parse(localStorage.getItem('zelx_premium_products'))||[
-{id:1,name:"Premium Cotton Saree - Free Delivery",price:549,mrp:1499,cat:"fashion",img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500",rating:"4.4",reviews:"3.2k",spec:"Cotton With Blouse, Free Delivery"},
-{id:2,name:"Men's Oversized T-Shirt Trendy",price:449,mrp:1099,cat:"fashion",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",rating:"4.3",reviews:"2.1k",spec:"Cotton, Loose Fit"},
-{id:3,name:"Women Kurta Palazzo Festive",price:799,mrp:1999,cat:"fashion",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500",rating:"4.5",reviews:"4k",spec:"Rayon, Party Wear"},
-{id:4,name:"5G Smartphone 128GB Assured",price:11999,mrp:18999,cat:"mobiles",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",rating:"4.6",reviews:"8k",spec:"8GB RAM, 50MP Camera"},
-{id:5,name:"TWS Earbuds Pro - Bass",price:999,mrp:3499,cat:"electronics",img:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500",rating:"4.2",reviews:"2.5k",spec:"40H Battery, Warranty"},
-{id:6,name:"Kids Ethnic Dress Premium",price:599,mrp:1299,cat:"kids",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=500",rating:"4.4",reviews:"1.2k",spec:"Age 4-10, Cotton"},
-{id:7,name:"Glow Face Cream Combo Pack",price:349,mrp:899,cat:"beauty",img:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500",rating:"4.1",reviews:"1.5k",spec:"2 Pcs, Natural"},
-{id:8,name:"Casual Sneakers For Men",price:899,mrp:2199,cat:"fashion",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",rating:"4.3",reviews:"2k",spec:"Size 6-10, Comfort"}
+let products=JSON.parse(localStorage.getItem('zelx_luxe_products'))||[
+{id:1,name:"Atelier Silk Saree - Branded Weave",price:2999,mrp:7999,cat:"fashion",img:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600",rating:"4.8",reviews:"1.2k",spec:"Handloom Silk, Atelier Edition"},
+{id:2,name:"Noir Cotton T-Shirt - Luxe Cut",price:1299,mrp:2999,cat:"fashion",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",rating:"4.7",reviews:"890",spec:"Organic Cotton, Atelier Fit"},
+{id:3,name:"Palazzo Kurta Set - Couture",price:2499,mrp:5999,cat:"fashion",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600",rating:"4.9",reviews:"2k",spec:"Atelier Crafted, Limited"},
+{id:4,name:"Titan Mobile 256GB - Tech Luxe",price:29999,mrp:49999,cat:"mobiles",img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",rating:"4.9",reviews:"5k",spec:"Atelier Titanium, 12GB"},
+{id:5,name:"Luxe TWS - Gold Edition",price:4999,mrp:12999,cat:"electronics",img:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600",rating:"4.8",reviews:"1.5k",spec:"24K Accent, Atelier Sound"},
+{id:6,name:"Petite Dress - Atelier Kids",price:1999,mrp:3999,cat:"kids",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=600",rating:"4.7",reviews:"600",spec:"Atelier Cotton, Age 4-10"},
+{id:7,name:"Beaute Serum - Luxe Glow",price:1999,mrp:4999,cat:"beauty",img:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600",rating:"4.8",reviews:"900",spec:"Atelier Formula, 30ml"},
+{id:8,name:"Noir Sneakers - Atelier Edition",price:3999,mrp:8999,cat:"fashion",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",rating:"4.7",reviews:"1.1k",spec:"Atelier Leather, Handcrafted"}
 ];
-let cart=JSON.parse(localStorage.getItem('zelx_premium_cart'))||[];let orders=JSON.parse(localStorage.getItem('zelx_premium_orders'))||[];let wish=JSON.parse(localStorage.getItem('zelx_premium_wish'))||[];
-function save(){localStorage.setItem('zelx_premium_products',JSON.stringify(products));localStorage.setItem('zelx_premium_cart',JSON.stringify(cart));localStorage.setItem('zelx_premium_orders',JSON.stringify(orders));localStorage.setItem('zelx_premium_wish',JSON.stringify(wish));}
-function render(list=products){let h="";list.forEach(p=>{h+=`<div class="card"><img src="${p.img}" onclick="showD(${p.id})"><h4>${p.name}</h4><div style="display:flex;gap:6px;align-items:center;margin:4px 0"><span class="rate">${p.rating} ★</span><span class="mrp">${p.reviews}</span><span class="assured">✓ Assured</span></div><div class="price">₹${p.price} <span class="mrp"><s>₹${p.mrp}</s></span><span class="off">${Math.round((1-p.price/p.mrp)*100)}% OFF</span></div><div class="free">🚚 Free Delivery • Lowest Price</div><button class="btn b1" onclick="addW(${p.id})">♡ Wishlist</button><button class="btn b2" onclick="addC(${p.id})">Add to Cart</button></div>`});document.getElementById('plist').innerHTML=h;document.getElementById('pc').innerText=products.length;document.getElementById('oc').innerText=orders.length;document.getElementById('cc').innerText=cart.length;document.getElementById('alist').innerHTML=h;document.getElementById('slist').innerHTML=h;}
-function addC(id){cart.push(products.find(x=>x.id==id));save();render();alert("🛒 Added to Cart!");openP('cart');showC();}
-function addW(id){let p=products.find(x=>x.id==id);if(!wish.find(x=>x.id==id))wish.push(p);save();alert("❤️ Wishlist Added!");showW();}
-function showC(){if(cart.length==0){document.getElementById('cbox').innerHTML="<div class='box' style='text-align:center'>🛒 Cart Empty<br><small>Shop now on ZELX!</small></div>";return;}let t=0,tx="";cart.forEach((p,i)=>{t+=p.price;tx+=`<div class="box" style="display:flex;justify-content:space-between;align-items:center"><div><b>${p.name}</b><br>₹${p.price} <span class="free">Free Delivery</span></div><span onclick="remC(${i})" style="color:#e53935;font-weight:900;font-size:18px">✕</span></div>`});document.getElementById('cbox').innerHTML=tx;document.getElementById('total').innerText="💰 Total: ₹"+t+" + Free Delivery";}
+let cart=JSON.parse(localStorage.getItem('zelx_luxe_cart'))||[];let orders=JSON.parse(localStorage.getItem('zelx_luxe_orders'))||[];let wish=JSON.parse(localStorage.getItem('zelx_luxe_wish'))||[];
+function save(){localStorage.setItem('zelx_luxe_products',JSON.stringify(products));localStorage.setItem('zelx_luxe_cart',JSON.stringify(cart));localStorage.setItem('zelx_luxe_orders',JSON.stringify(orders));localStorage.setItem('zelx_luxe_wish',JSON.stringify(wish));}
+function render(list=products){let h="";list.forEach(p=>{h+=`<div class="card"><div class="brand">ZELX LUXE</div><img src="${p.img}" onclick="showD(${p.id})"><div class="card-content"><h4>${p.name}</h4><div style="display:flex;gap:6px;align-items:center;margin:6px 0"><span class="rate">${p.rating} ★</span><span class="mrp">${p.reviews}</span></div><div class="price">₹${p.price} <span class="mrp"><s>₹${p.mrp}</s></span><span class="off">${Math.round((1-p.price/p.mrp)*100)}% OFF</span></div><div class="free">Atelier • Authentic • Free Ship</div><div class="luxe-line"></div><button class="btn b1" onclick="addW(${p.id})">Wishlist</button><button class="btn b2" onclick="addC(${p.id})">Add To Bag</button></div></div>`});document.getElementById('plist').innerHTML=h;document.getElementById('pc').innerText=products.length;document.getElementById('oc').innerText=orders.length;document.getElementById('cc').innerText=cart.length;document.getElementById('alist').innerHTML=h;document.getElementById('slist').innerHTML=h;}
+function addC(id){cart.push(products.find(x=>x.id==id));save();render();alert("Added to Atelier Bag!");openP('cart');showC();}
+function addW(id){let p=products.find(x=>x.id==id);if(!wish.find(x=>x.id==id))wish.push(p);save();alert("Added to Wishlist Atelier!");showW();}
+function showC(){if(cart.length==0){document.getElementById('cbox').innerHTML="<div class='box' style='text-align:center;letter-spacing:2px'>BAG EMPTY — CURATE YOUR ATELIER</div>";return;}let t=0,tx="";cart.forEach((p,i)=>{t+=p.price;tx+=`<div class="box" style="display:flex;justify-content:space-between;align-items:center"><div><b style="letter-spacing:0.5px;text-transform:uppercase">${p.name}</b><br>₹${p.price}</div><span onclick="remC(${i})" style="color:#000;font-weight:900;font-size:16px;border:1px solid #000;padding:2px 8px">✕</span></div>`});document.getElementById('cbox').innerHTML=tx;document.getElementById('total').innerText="ATELIER TOTAL: ₹"+t;}
 function remC(i){cart.splice(i,1);save();render();showC();}
-function showW(){let h="";wish.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><h4>${p.name}</h4><div class="price">₹${p.price}</div><button class="btn b2" onclick="addC(${p.id})">Move to Cart</button></div>`});document.getElementById('wbox').innerHTML=h||"<div class='box'>❤️ Wishlist Empty</div>";}
-function showD(id){let p=products.find(x=>x.id==id);document.getElementById('dbox').innerHTML=`<div class="box"><img src="${p.img}" style="width:100%;height:300px;object-fit:contain;border-radius:16px;background:#f8fdf8"><h3 style="margin:10px 0">${p.name}</h3><div><span class="rate">${p.rating} ★</span> ${p.reviews} Ratings <span class="assured">✓ Assured</span></div><div class="price" style="font-size:20px;margin:8px 0">₹${p.price} <s class="mrp">₹${p.mrp}</s><span class="off">${Math.round((1-p.price/p.mrp)*100)}% OFF</span></div><p style="font-size:13px;color:#555">${p.spec}</p><div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);padding:10px;border-radius:12px;font-size:11px;margin:10px 0;border:1px solid #a5d6a7">🚚 Free Delivery | 💵 COD Available | ↩️ 7 Days Return | ⭐ Lowest Price | 🛡️ ZELX Assured</div><button class="btn b1" onclick="addC(${p.id})">🛒 Add to Cart</button><button class="btn b2" onclick="addC(${p.id});openP('cart')">⚡ Buy Now</button></div>`;openP('detail');}
-function placeO(){if(cart.length==0)return alert("Empty");let a=document.getElementById('addr').value,ph=document.getElementById('ph').value;if(!a||!ph)return alert("Address & Phone needed");let t=cart.reduce((s,p)=>s+p.price,0);orders.unshift({id:Date.now(),items:[...cart],total:t,addr:a,ph:ph,status:"Ordered",date:new Date().toLocaleDateString()});cart=[];save();render();showO();alert("✅ Order Placed! ₹"+t+" - Free Delivery");openP('orders');}
-function showO(){let h="";orders.forEach(o=>{h+=`<div class="box"><b>📦 Order #${o.id}</b> - ${o.date}<br><small>${o.items.map(i=>i.name).join(", ")}</small><br>Total: ₹${o.total} <span class="free">Free Delivery</span><br>Status: <b style="background:#e8f5e9;padding:4px 10px;border-radius:20px;color:#2e7d32;border:1px solid #a5d6a7">${o.status}</b><br><small style="color:#66bb6a">Ordered → Packed → Shipped → Delivered</small><br><button class="btn b1" style="width:auto;padding:6px 14px;margin-top:8px" onclick="nextS(${o.id})">Next →</button></div>`});document.getElementById('obox').innerHTML=h||"<div class='box'>No Orders Yet - Shop Now! 🛍️</div>";}
-function nextS(id){let o=orders.find(x=>x.id==id);if(o.status=="Ordered")o.status="Packed";else if(o.status=="Packed")o.status="Shipped";else if(o.status=="Shipped")o.status="Delivered";save();showO();}
+function showW(){let h="";wish.forEach(p=>{h+=`<div class="card"><div class="brand">LUXE</div><img src="${p.img}"><div class="card-content"><h4>${p.name}</h4><div class="price">₹${p.price}</div><button class="btn b2" onclick="addC(${p.id})">Move to Bag</button></div></div>`});document.getElementById('wbox').innerHTML=h||"<div class='box'>WISHLIST ATELIER EMPTY</div>";}
+function showD(id){let p=products.find(x=>x.id==id);document.getElementById('dbox').innerHTML=`<div class="box"><div class="brand" style="position:relative;top:0;left:0;display:inline-block;margin-bottom:10px">ZELX LUXE AUTHENTIC</div><img src="${p.img}" style="width:100%;height:320px;object-fit:contain;background:#fafaf7"><h3 style="font-family:'Playfair Display';margin:12px 0;letter-spacing:1px;text-transform:uppercase">${p.name}</h3><div><span class="rate">${p.rating} ★</span> ${p.reviews} Atelier Reviews</div><div class="price" style="font-size:22px;margin:10px 0">₹${p.price} <s class="mrp">₹${p.mrp}</s><span class="off">${Math.round((1-p.price/p.mrp)*100)}% OFF</span></div><p style="font-size:12px;color:#666;letter-spacing:0.5px;line-height:18px">${p.spec} — Curated at ZELX Luxe Atelier. Authentic Branded. Limited Edition.</p><div class="luxe-line"></div><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:10px;border:1px solid #000;text-align:center">Authentic • Atelier • Free Shipping • Elite Return • Concierge Support</div><button class="btn b1" onclick="addC(${p.id})">Add To Bag</button><button class="btn b2" onclick="addC(${p.id});openP('cart')">Buy Atelier Now</button></div>`;openP('detail');}
+function placeO(){if(cart.length==0)return alert("Empty");let a=document.getElementById('addr').value,ph=document.getElementById('ph').value;if(!a||!ph)return alert("Atelier Address & Concierge needed");let t=cart.reduce((s,p)=>s+p.price,0);orders.unshift({id:Date.now(),items:[...cart],total:t,addr:a,ph:ph,status:"Atelier Ordered",date:new Date().toLocaleDateString()});cart=[];save();render();showO();alert("Atelier Order Confirmed! ₹"+t);openP('orders');}
+function showO(){let h="";orders.forEach(o=>{h+=`<div class="box"><b style="letter-spacing:1px">ATELIER #${o.id}</b> - ${o.date}<br><small style="letter-spacing:0.5px">${o.items.map(i=>i.name).join(", ")}</small><br><div class="luxe-line"></div>Total: ₹${o.total}<br>Status: <b style="background:#000;color:#d4af37;padding:4px 12px;letter-spacing:2px;font-size:10px">${o.status}</b><br><small style="letter-spacing:2px;color:#999">ORDERED → PACKED → SHIPPED → DELIVERED</small><br><button class="btn b1" style="width:auto;padding:8px 16px;margin-top:10px" onclick="nextS(${o.id})">Next Atelier Status</button></div>`});document.getElementById('obox').innerHTML=h||"<div class='box' style='text-align:center;letter-spacing:3px'>NO ATELIER ORDERS — CURATE NOW</div>";}
+function nextS(id){let o=orders.find(x=>x.id==id);if(o.status=="Atelier Ordered")o.status="Atelier Packed";else if(o.status=="Atelier Packed")o.status="Shipped Atelier";else if(o.status=="Shipped Atelier")o.status="Delivered Luxe";save();showO();}
 function openP(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on'));document.getElementById('p-'+p).classList.add('on');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('on'));let bn=document.getElementById('bn-'+p);if(bn)bn.classList.add('on');if(p=='cart')showC();if(p=='orders')showO();if(p=='wish')showW();window.scrollTo(0,0);}
 function catF(c){if(c=='all')render();else render(products.filter(x=>x.cat==c));}
 function searchF(){let q=document.getElementById('sr').value.toLowerCase();render(products.filter(x=>x.name.toLowerCase().includes(q)));}
-function addP(){let n=document.getElementById('sn').value,p=document.getElementById('sp').value,i=document.getElementById('si').value,c=document.getElementById('sc').value,d=document.getElementById('sd').value;if(!n||!p)return alert("Name & Price needed");products.unshift({id:Date.now(),name:n,price:parseInt(p),mrp:parseInt(p)+600,cat:c,img:i||'https://via.placeholder.com/500',rating:"4.5",reviews:"New",spec:d});save();render();alert("✅ Product Live on Premium ZELX!");openP('home');}
-function clearA(){if(confirm("Delete all?")){localStorage.clear();location.reload();}}
+function addP(){let n=document.getElementById('sn').value,p=document.getElementById('sp').value,i=document.getElementById('si').value,c=document.getElementById('sc').value,d=document.getElementById('sd').value;if(!n||!p)return alert("Name & Price needed");products.unshift({id:Date.now(),name:n,price:parseInt(p),mrp:parseInt(p)+2000,cat:c,img:i||'https://via.placeholder.com/600',rating:"4.8",reviews:"New Atelier",spec:d});save();render();alert("Atelier Live!");openP('home');}
+function clearA(){if(confirm("Clear Atelier?")){localStorage.clear();location.reload();}}
 render();showC();showO();showW();
 </script>
 </body>
