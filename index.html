@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho Clone - Online Shopping Platform</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- 1. HEADER SECTION -->
+    <header class="bg-white sticky top-0 z-50 border-b border-gray-200 shadow-sm">
+        <!-- Top Nav -->
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="#" class="text-3xl font-extrabold text-[#f43397] tracking-tight">meesho</a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="flex-1 max-w-2xl relative">
+                <i class="fa fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" placeholder="Try Saree, Kurti or Search by Product Code" 
+                       class="w-full pl-12 pr-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:border-[#f43397] bg-gray-50 text-sm">
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-[#f43397] hidden md:block">Become a Supplier</a>
+                <a href="#" class="hover:text-[#f43397] hidden md:block">Newsroom</a>
+                <div class="h-6 w-[1px] bg-gray-300 hidden md:block"></div>
+                
+                <!-- Profile Dropdown -->
+                <a href="#" class="flex flex-col items-center gap-1 hover:text-[#f43397]">
+                    <i class="fa-regular fa-user text-xl"></i>
+                    <span class="text-xs">Profile</span>
+                </a>
+                
+                <!-- Cart -->
+                <a href="#" class="flex flex-col items-center gap-1 hover:text-[#f43397] relative">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span class="text-xs">Cart</span>
+                    <span class="absolute -top-1 -right-2 bg-[#f43397] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Secondary Category Nav -->
+        <nav class="border-t border-gray-100 hidden lg:block bg-white">
+            <div class="max-w-7xl mx-auto px-4 flex justify-between text-sm font-normal text-gray-600 h-12 items-center">
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Women Ethnic</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Women Western</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Men</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Kids</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Home & Kitchen</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Beauty & Health</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Jewellery & Bags</a>
+                <a href="#" class="hover:text-[#f43397] border-b-2 border-transparent hover:border-[#f43397] py-3">Electronics</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- 2. HERO BANNER SECTION -->
+        <section class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row justify-between items-center mb-12 shadow-sm">
+            <div class="max-w-md space-y-4 text-center md:text-left">
+                <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight">Lowest Prices <br class="hidden md:inline">Best Quality Shopping</h1>
+                <p class="text-gray-600 text-sm md:text-base">Join millions of smart shoppers saving big on every order.</p>
+                <div class="flex items-center gap-4 bg-white p-3 rounded-lg shadow-xs inline-flex text-xs font-semibold text-gray-700">
+                    <span class="flex items-center gap-1"><i class="fa fa-truck text-green-600"></i> Free Delivery</span>
+                    <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                    <span class="flex items-center gap-1"><i class="fa fa-wallet text-green-600"></i> Cash on Delivery</span>
+                </a>
+            </div>
+            </div>
+            <div class="mt-6 md:mt-0">
+                <!-- Fallback decorative placeholder representing fashion items -->
+                <div class="w-64 h-64 bg-[#f43397]/10 rounded-full border-4 border-white flex items-center justify-center text-[#f43397] text-6xl animate-pulse">
+                    <i class="fa fa-bag-shopping"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PRODUCT FILTER & GRID SECTION -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Products For You</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Filters (Hidden on smaller screens) -->
+                <aside class="w-full lg:w-64 flex-shrink-0 hidden lg:block bg-white p-6 rounded-xl border border-gray-200 h-fit space-y-6">
+                    <div>
+                        <h3 class="font-bold mb-3 text-sm tracking-wide uppercase text-gray-500">Category</h3>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="checkbox" class="accent-[#f43397]"> Kurtis</label>
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="checkbox" class="accent-[#f43397]"> Sarees</label>
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="checkbox" class="accent-[#f43397]"> Tshirts</label>
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="checkbox" class="accent-[#f43397]"> Jewellery</label>
+                        </div>
+                    </div>
+                    <hr class="border-gray-100">
+                    <div>
+                        <h3 class="font-bold mb-3 text-sm tracking-wide uppercase text-gray-500">Price</h3>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="radio" name="price" class="accent-[#f43397]"> Under ₹199</label>
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="radio" name="price" class="accent-[#f43397]"> ₹199 - ₹499</label>
+                            <label class="flex items-center gap-2 text-gray-700 cursor-pointer"><input type="radio" name="price" class="accent-[#f43397]"> Above ₹500</label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Dynamic Grid -->
+                <div class="flex-1 grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="product-grid">
+                    <!-- Products dynamically rendered by JavaScript below -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 4. FOOTER SECTION -->
+    <footer class="bg-gray-900 text-gray-300 mt-20 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+            <div class="space-y-4">
+                <h3 class="text-white text-2xl font-bold tracking-tight">meesho</h3>
+                <p class="text-gray-400 leading-relaxed">Shop thousands of affordable high-quality fashion items right from your device.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Legal and Policies</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white">Return Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Contact Us</h4>
+                <p class="text-gray-400">Email: help@meeshoclone.com</p>
+                <p class="text-gray-400 mt-1">Locate us: Bangalore, India</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 py-6 text-center text-xs text-gray-500">
+            © 2026 Meesho Frontend Clone. Created for educational layout purposes.
+        </div>
+    </footer>
+
+    <!-- DYNAMIC JAVASCRIPT FOR GENERATING PRODUCTS -->
+    <script>
+        const products = [
+Use code with caution.
+{ id: 1, name: "Trendy Elegant Women Cotton Kurtis", price: 299, rating: "4.1", reviews: "2043", img: "unsplash.com" },
+{ id: 2, name: "Classic Men Regular Fit T-Shirt", price: 199, rating: "3.9", reviews: "852", img: "unsplash.com" },
+{ id: 3, name: "Traditional Georgette Saree Pack", price: 449, rating: "4.3", reviews: "5112", img: "unsplash.com" },
+{ id: 4, name: "Modern Plated Gold Jewellery Set", price: 149, rating: "4.0", reviews: "632", img: "unsplash.com" },
+{ id: 5, name: "Comfy Printed Kids Wear Set", price: 250, rating: "4.2", reviews: "198", img: "unsplash.com" },
+{ id: 6, name: "Stylish Analog Watch for Men", price: 185, rating: "3.8", reviews: "4500", img: "unsplash.com" },
+{ id: 7, name: "Matte Liquid Lipstick Pack of 4", price: 210, rating: "4.4", reviews: "931", img: "unsplash.com" },
+{ id: 8, name: "Ergonomic Bluetooth Wireless Earbuds", price: 499, rating: "4.1", reviews: "1520", img: "unsplash.com" }
+];
+const grid = document.getElementById('product-grid');
+products.forEach(p => {
+grid.innerHTML += <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow cursor-pointer flex flex-col group"> <div class="relative bg-gray-100 aspect-square overflow-hidden"> <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"> </div> <div class="p-4 flex-1 flex flex-col justify-between space-y-2"> <div> <h3 class="text-sm font-normal text-gray-500 line-clamp-2">${p.name}</h3> <div class="flex items-baseline gap-2 mt-1"> <span class="text-xl font-bold text-gray-900">₹${p.price}</span> <span class="text-xs text-gray-400 line-through">₹${p.price + 150}</span> </div> </div> <div class="flex items-center justify-between text-xs pt-1"> <div class="bg-green-600 text-white font-bold px-2 py-0.5 rounded-full flex items-center gap-1"> ${p.rating} <i class="fa fa-star text-[10px]"></i> </div> <span class="text-gray-400 font-medium">${p.reviews} Reviews</span> </div> </div> </div>;
+});
