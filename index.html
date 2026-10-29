@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZELX - Professional E-Commerce & Reseller Network</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f1f5f9; }
+    .badge-cod { background: #059669; color: white; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- TOP PROFESSIONAL ANNOUNCEMENT BAR -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 flex justify-between items-center border-b border-slate-800">
+    <div class="flex items-center space-x-2">
+      <span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider">100% COD Verified</span>
+      <span>Nationwide Fast Dispatch | Zero Prepayment Risk</span>
+    </div>
+    <div class="flex items-center space-x-4 text-xs font-medium">
+      <a href="https://wa.me/917824048224" target="_blank" class="hover:text-white flex items-center gap-1"><i class="fab font-bold fa-whatsapp text-emerald-400 text-sm"></i> +91 7824048224</a>
+      <a href="mailto:smaty0305@gmail.com" class="hover:text-white flex items-center gap-1"><i class="fas fa-envelope text-indigo-400"></i> smaty0305@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- MAIN CORPORATE HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- BRAND LOGO -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('store')">
+          <div class="bg-gradient-to-tr from-indigo-600 via-indigo-700 to-violet-800 text-white p-3 rounded-2xl font-black text-2xl tracking-wider shadow-md">
+            ZELX
+          </div>
+          <div>
+            <h1 class="text-2xl font-black text-slate-900 tracking-tight leading-none">ZELX</h1>
+            <p class="text-[10px] font-bold text-indigo-600 tracking-widest uppercase mt-0.5">Enterprise Store</p>
+          </div>
+        </div>
+
+        <!-- SEARCH BAR -->
+        <div class="flex-1 max-w-2xl hidden md:block">
+          <div class="relative">
+            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+            <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="Search products, brands, or categories..." class="w-full pl-11 pr-4 py-2.5 bg-slate-100 border border-transparent rounded-xl text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-indigo-600 transition-all shadow-inner">
+          </div>
+        </div>
+
+        <!-- RIGHT NAVIGATION ACTIONS -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <!-- Role Selector -->
+          <div class="relative group">
+            <button class="flex items-center space-x-2 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 transition">
+              <i class="fas fa-user-circle text-indigo-600 text-base"></i>
+              <span id="roleLabel">Customer Portal</span>
+              <i class="fas fa-chevron-down text-[10px] text-slate-400"></i>
+            </button>
+            <div class="absolute right-0 mt-1 w-52 bg-white border border-slate-200 rounded-2xl shadow-xl hidden group-hover:block z-50 py-2">
+              <button onclick="setRole('Customer')" class="w-full text-left px-4 py-2.5 text-xs hover:bg-indigo-50 text-slate-700 font-bold flex items-center gap-2"><i class="fas fa-user text-indigo-600"></i> Customer Storefront</button>
+              <button onclick="setRole('Seller')" class="w-full text-left px-4 py-2.5 text-xs hover:bg-emerald-50 text-emerald-800 font-bold flex items-center gap-2"><i class="fas fa-store text-emerald-600"></i> Seller Dashboard</button>
+              <button onclick="setRole('Admin')" class="w-full text-left px-4 py-2.5 text-xs hover:bg-slate-50 text-slate-900 font-bold flex items-center gap-2"><i class="fas fa-user-shield text-slate-700"></i> Admin Panel</button>
+            </div>
+          </div>
+
+          <!-- CART TRIGGER -->
+          <button onclick="toggleCartDrawer()" class="relative p-2.5 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-xl transition">
+            <i class="fas fa-shopping-bag text-lg"></i>
+            <span id="cartBadge" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS BAR -->
+    <div class="bg-white border-t border-slate-200 px-4 sm:px-8 flex space-x-8 text-xs font-bold text-slate-600 overflow-x-auto hide-scrollbar shadow-sm">
+      <button onclick="switchTab('store')" id="tab-store" class="py-3 text-indigo-600 border-b-2 border-indigo-600 whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-store"></i> Storefront
+      </button>
+      <button onclick="switchTab('reseller')" id="tab-reseller" class="py-3 hover:text-indigo-600 border-b-2 border-transparent whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-calculator"></i> Reseller Margin Hub
+      </button>
+      <button onclick="switchTab('orders')" id="tab-orders" class="py-3 hover:text-indigo-600 border-b-2 border-transparent whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-box"></i> My Orders
+      </button>
+      <button onclick="switchTab('seller')" id="tab-seller" class="py-3 hover:text-emerald-600 border-b-2 border-transparent whitespace-nowrap flex items-center gap-1.5">
+        <i class="fas fa-store-alt"></i> Seller / Admin Dashboard
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+    <!-- STOREFRONT VIEW -->
+    <div id="view-store" class="space-y-6">
+      <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-12 text-white relative overflow-hidden shadow-2xl">
+        <div class="relative z-10 max-w-xl space-y-3">
+          <span class="bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border border-indigo-500/30">Verified Direct Marketplace</span>
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-none">Wholesale Prices, Retail Freedom.</h2>
+          <p class="text-slate-300 text-sm leading-relaxed">Shop top products with 100% Cash on Delivery. Zero online payment risk, guaranteed satisfaction.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-black text-slate-900">Trending Products</h3>
+          <span id="productCount" class="text-xs text-slate-500 font-bold">0 Items Available</span>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"></div>
+
+        <div id="emptyCatalog" class="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-300 hidden">
+          <i class="fas fa-box-open text-5xl text-slate-300 mb-3"></i>
+          <h4 class="text-base font-bold text-slate-800">No Products Listed Yet</h4>
+          <p class="text-xs text-slate-500 max-w-xs mx-auto mt-1">Go to the Seller Dashboard to upload your first live product from your gallery.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELLER & ADMIN DASHBOARD VIEW -->
+    <div id="view-seller" class="hidden space-y-6">
+      <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 flex flex-wrap justify-between items-center gap-4 shadow-xl">
+        <div>
+          <span class="bg-emerald-500 text-white text-[10px] font-black px-3 py-1 rounded uppercase tracking-wider">SELLER CENTRAL</span>
+          <h3 class="text-2xl font-black mt-1">Inventory & Product Hub</h3>
+        </div>
+        <button onclick="openProductModal()" class="bg-emerald-600 hover:bg-emerald-500 px-5 py-3 rounded-2xl text-xs font-black shadow-lg flex items-center gap-2 transition">
+          <i class="fas fa-plus-circle text-sm"></i> Add New Product (Gallery Upload)
+        </button>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+        <h4 class="text-sm font-black text-slate-900 mb-4">Your Active Inventory</h4>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold">
+                <th class="p-3.5">Product</th>
+                <th class="p-3.5">Category</th>
+                <th class="p-3.5">Selling Price</th>
+                <th class="p-3.5">Stock</th>
+                <th class="p-3.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="sellerInventoryTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESELLER MARGIN HUB -->
+    <div id="view-reseller" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <h3 class="text-lg font-black text-slate-900 flex items-center gap-2"><i class="fas fa-calculator text-indigo-600"></i> Reseller Margin Calculator</h3>
+        <p class="text-xs text-slate-500 mt-1">Calculate your profit margin and share professional deal cards directly on WhatsApp.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+          <div class="space-y-4">
+            <div>
+              <label class="text-xs font-bold text-slate-700">Select Product</label>
+              <select id="resellerSelect" onchange="updateResellerCalc()" class="w-full mt-1 p-3 text-xs bg-slate-50 border border-slate-200 rounded-xl font-medium">
+                <option value="">Choose product...</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-bold text-slate-700">Wholesale Cost (₹)</label>
+                <input type="text" id="resellerCost" readonly class="w-full mt-1 p-3 text-xs bg-slate-100 font-bold border border-slate-200 rounded-xl">
+              </div>
+              <div>
+                <label class="text-xs font-bold text-slate-700">Your Profit Margin (₹)</label>
+                <input type="number" id="resellerMargin" value="150" oninput="updateResellerCalc()" class="w-full mt-1 p-3 text-xs bg-slate-50 border border-slate-300 font-black text-emerald-600 rounded-xl">
+              </div>
+            </div>
+            <div class="bg-indigo-50 border border-indigo-100 p-5 rounded-2xl">
+              <p class="text-xs text-indigo-700 font-bold">Final Buyer Price (COD):</p>
+              <p id="resellerFinalPrice" class="text-3xl font-black text-indigo-950 mt-1">₹0</p>
+            </div>
+            <button onclick="shareResellerOffer()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-2xl font-black text-xs flex items-center justify-center gap-2 shadow transition">
+              <i class="fab fa-whatsapp text-lg"></i> Share Deal via WhatsApp
+            </button>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 flex items-center justify-center text-center">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm w-full max-w-xs space-y-3">
+              <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Customer Preview Card</p>
+              <img id="resellerPreviewImg" src="https://via.placeholder.com/200" class="w-36 h-36 object-contain mx-auto rounded-xl bg-slate-50 border border-slate-100">
+              <h5 id="resellerPreviewTitle" class="text-xs font-bold text-slate-800 line-clamp-2">Select a product</h5>
+              <div class="text-xl font-black text-slate-900" id="resellerPreviewPrice">₹0</div>
+              <span class="inline-block badge-cod text-[10px] font-extrabold px-2.5 py-1 rounded-full">Cash On Delivery Available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS VIEW -->
+    <div id="view-orders" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <h3 class="text-lg font-black text-slate-900 mb-4"><i class="fas fa-box-open text-indigo-600 mr-2"></i> Order Tracking History</h3>
+        <div id="ordersList" class="space-y-4"></div>
+        <div id="noOrders" class="text-center py-12 text-slate-400 text-xs">No active orders placed yet.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ADD PRODUCT MODAL (WITH GALLERY FILE UPLOAD) -->
+  <div id="productModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+        <h3 id="modalTitle" class="text-base font-black text-slate-900">Upload Product (Gallery Direct)</h3>
+        <button onclick="closeProductModal()" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times text-base"></i></button>
+      </div>
+
+      <input type="hidden" id="editProductId">
+      <input type="hidden" id="pImgBase64">
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="font-bold text-slate-700">Product Title *</label>
+          <input type="text" id="pTitle" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 font-medium" placeholder="e.g. Men's Casual Shirt">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-slate-700">Category *</label>
+            <select id="pCategory" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 font-medium">
+              <option value="Electronics">Electronics</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Footwear">Footwear</option>
+              <option value="Home">Home</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700">Stock Qty *</label>
+            <input type="number" id="pStock" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 font-medium" value="50">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-slate-700">Selling Price (₹) *</label>
+            <input type="number" id="pPrice" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 font-medium" placeholder="499">
+          </div>
+          <div>
+            <label class="font-bold text-slate-700">Wholesale Price (₹)</label>
+            <input type="number" id="pWholesale" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 font-medium" placeholder="350">
+          </div>
+        </div>
+
+        <!-- GALLERY FILE UPLOAD -->
+        <div class="bg-indigo-50/60 p-4 rounded-2xl border border-indigo-100">
+          <label class="font-bold text-slate-800 block mb-1">
+            <i class="fas fa-image text-indigo-600 mr-1"></i> Choose Image from Mobile Gallery *
+          </label>
+          <input type="file" id="pFileInput" accept="image/*" onchange="handleImageUpload(event)" class="w-full p-2.5 border border-slate-200 rounded-xl bg-white text-xs font-medium">
+          
+          <div id="imagePreviewContainer" class="mt-3 hidden">
+            <p class="text-[10px] text-slate-500 font-bold mb-1">Preview Image:</p>
+            <img id="imagePreview" src="" class="w-24 h-24 object-cover rounded-xl border border-slate-300 shadow-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700">Description</label>
+          <textarea id="pDesc" class="w-full mt-1 p-3 border border-slate-200 rounded-xl bg-slate-50 h-20 font-medium" placeholder="Product details..."></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-2">
+        <button onclick="closeProductModal()" class="px-5 py-2.5 border border-slate-200 rounded-xl text-xs font-bold text-slate-600">Cancel</button>
+        <button onclick="saveProduct()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-black shadow">Save & Publish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART & CHECKOUT DRAWER -->
+  <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-5 border-b border-slate-200 flex justify-between items-center bg-slate-900 text-white">
+      <h3 class="font-black text-sm flex items-center gap-2"><i class="fas fa-shopping-bag"></i> Shopping Cart</h3>
+      <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white"><i class="fas fa-times text-lg"></i></button>
+    </div>
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+    <div class="p-5 border-t border-slate-200 bg-slate-50 space-y-3">
+      <div class="flex justify-between font-black text-sm text-slate-900">
+        <span>Total Payable (COD):</span>
+        <span id="cartTotalDisplay">₹0</span>
+      </div>
+      <div class="space-y-2.5">
+        <input type="text" id="custName" placeholder="Full Name" class="w-full p-3 bg-white border border-slate-200 rounded-xl text-xs font-medium">
+        <input type="text" id="custPhone" placeholder="Mobile Number for COD Confirmation" class="w-full p-3 bg-white border border-slate-200 rounded-xl text-xs font-medium">
+        <textarea id="custAddress" placeholder="Complete Delivery Address & Pincode" class="w-full p-3 bg-white border border-slate-200 rounded-xl text-xs font-medium h-16"></textarea>
+      </div>
+      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center space-x-2 text-emerald-800 text-xs font-bold">
+        <i class="fas fa-hand-holding-dollar text-emerald-600 text-base"></i>
+        <span>100% Cash on Delivery Active</span>
+      </div>
+      <button onclick="submitCODOrder()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-xl font-black text-xs shadow-md transition">
+        Confirm & Place Order (COD)
+      </button>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    let activeRole = 'Customer';
+    let products = JSON.parse(localStorage.getItem('zelx_products')) || [];
+    let cart = JSON.parse(localStorage.getItem('zelx_cart')) || [];
+    let orders = JSON.parse(localStorage.getItem('zelx_orders')) || [];
+
+    window.onload = function() {
+      renderProducts();
+      renderSellerTable();
+      updateCartUI();
+      renderOrders();
+      populateResellerDropdown();
+    };
+
+    function setRole(role) {
+      activeRole = role;
+      document.getElementById('roleLabel').innerText = `${role} Portal`;
+      if(role === 'Seller' || role === 'Admin') switchTab('seller');
+      else switchTab('store');
+    }
+
+    function switchTab(tabId) {
+      ['store', 'reseller', 'orders', 'seller'].forEach(t => {
+        const el = document.getElementById(`view-${t}`);
+        if (el) el.classList.add('hidden');
+        const btn = document.getElementById(`tab-${t}`);
+        if(btn) btn.classList.remove('text-indigo-600', 'border-indigo-600', 'font-black');
+      });
+      const activeView = document.getElementById(`view-${tabId}`);
+      if (activeView) activeView.classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      if(activeBtn) activeBtn.classList.add('text-indigo-600', 'border-indigo-600', 'font-black');
+    }
+
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const base64Img = e.target.result;
+          document.getElementById('pImgBase64').value = base64Img;
+          document.getElementById('imagePreview').src = base64Img;
+          document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function openProductModal(id = null) {
+      document.getElementById('productModal').classList.remove('hidden');
+      if(id) {
+        const p = products.find(item => item.id === id);
+        document.getElementById('modalTitle').innerText = 'Edit Live Product';
+        document.getElementById('editProductId').value = p.id;
+        document.getElementById('pTitle').value = p.title;
+        document.getElementById('pCategory').value = p.category;
+        document.getElementById('pStock').value = p.stock;
+        document.getElementById('pPrice').value = p.price;
+        document.getElementById('pWholesale').value = p.wholesalePrice || p.price;
+        document.getElementById('pImgBase64').value = p.img;
+        document.getElementById('imagePreview').src = p.img;
+        document.getElementById('imagePreviewContainer').classList.remove('hidden');
+        document.getElementById('pDesc').value = p.desc || '';
+      } else {
+        document.getElementById('modalTitle').innerText = 'Upload Product (Gallery Direct)';
+        document.getElementById('editProductId').value = '';
+        document.getElementById('pTitle').value = '';
+        document.getElementById('pStock').value = '50';
+        document.getElementById('pPrice').value = '';
+        document.getElementById('pWholesale').value = '';
+        document.getElementById('pImgBase64').value = '';
+        document.getElementById('pFileInput').value = '';
+        document.getElementById('imagePreviewContainer').classList.add('hidden');
+        document.getElementById('pDesc').value = '';
+      }
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').classList.add('hidden');
+    }
+
+    function saveProduct() {
+      const id = document.getElementById('editProductId').value;
+      const title = document.getElementById('pTitle').value;
+      const category = document.getElementById('pCategory').value;
+      const stock = parseInt(document.getElementById('pStock').value) || 0;
+      const price = parseFloat(document.getElementById('pPrice').value) || 0;
+      const wholesalePrice = parseFloat(document.getElementById('pWholesale').value) || price;
+      const img = document.getElementById('pImgBase64').value || 'https://via.placeholder.com/200';
+      const desc = document.getElementById('pDesc').value;
+
+      if(!title || !price) {
+        alert('Please enter Product Title and Price!');
+        return;
+      }
+
+      if(id) {
+        const idx = products.findIndex(p => p.id == id);
+        products[idx] = { id: parseInt(id), title, category, stock, price, wholesalePrice, img, desc };
+      } else {
+        products.push({ id: Date.now(), title, category, stock, price, wholesalePrice, img, desc });
+      }
+
+      localStorage.setItem('zelx_products', JSON.stringify(products));
+      renderProducts();
+      renderSellerTable();
+      populateResellerDropdown();
+      closeProductModal();
+      alert('Product Published Successfully!');
+    }
+
+    function deleteProduct(id) {
+      if(confirm('Delete this product?')) {
+        products = products.filter(p => p.id !== id);
+        localStorage.setItem('zelx_products', JSON.stringify(products));
+        renderProducts();
+        renderSellerTable();
+        populateResellerDropdown();
+      }
+    }
+
+    function renderProducts(filterList = products) {
+      const grid = document.getElementById('productGrid');
+      const empty = document.getElementById('emptyCatalog');
+      document.getElementById('productCount').innerText = `${filterList.length} Items Available`;
+
+      grid.innerHTML = '';
+      if(filterList.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      filterList.forEach(p => {
+        grid.innerHTML += `
+          <div class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col justify-between hover:shadow-lg transition">
+            <div>
+              <div class="relative mb-3 bg-slate-50 rounded-xl p-2">
+                <img src="${p.img}" class="w-full h-36 object-contain rounded-lg">
+                <span class="absolute top-2 left-2 badge-cod text-[9px] font-black px-2 py-0.5 rounded-full">COD</span>
+              </div>
+              <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-widest">${p.category}</span>
+              <h4 class="text-xs font-bold text-slate-800 line-clamp-2 mt-1">${p.title}</h4>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-base font-black text-slate-900">₹${p.price}</span>
+                <span class="text-[10px] text-slate-400 font-bold">Stock: ${p.stock}</span>
+              </div>
+              <button onclick="addToCart(${p.id})" class="w-full mt-2.5 bg-slate-900 hover:bg-slate-800 text-white py-2 rounded-xl text-xs font-bold transition shadow-sm">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderSellerTable() {
+      const tbody = document.getElementById('sellerInventoryTable');
+      tbody.innerHTML = '';
+      products.forEach(p => {
+        tbody.innerHTML += `
+          <tr class="border-b border-slate-100">
+            <td class="p-3.5 font-bold flex items-center gap-3">
+              <img src="${p.img}" class="w-10 h-10 object-contain rounded-xl bg-slate-50 border border-slate-200 p-1">
+              <span>${p.title}</span>
+            </td>
+            <td class="p-3.5 text-slate-600">${p.category}</td>
+            <td class="p-3.5 font-black text-slate-900">₹${p.price}</td>
+            <td class="p-3.5 font-medium">${p.stock}</td>
+            <td class="p-3.5 text-right space-x-3">
+              <button onclick="openProductModal(${p.id})" class="text-indigo-600 font-bold hover:underline">Edit</button>
+              <button onclick="deleteProduct(${p.id})" class="text-red-500 font-bold hover:underline">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function addToCart(id) {
+      const p = products.find(item => item.id === id);
+      const existing = cart.find(item => item.id === id);
+      if(existing) existing.qty += 1;
+      else cart.push({ ...p, qty: 1 });
+      localStorage.setItem('zelx_cart', JSON.stringify(cart));
+      updateCartUI();
+      toggleCartDrawer(true);
+    }
+
+    function updateCartUI() {
+      document.getElementById('cartBadge').innerText = cart.reduce((sum, i) => sum + i.qty, 0);
+      const list = document.getElementById('cartItemsList');
+      list.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        list.innerHTML += `
+          <div class="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+            <div class="flex items-center space-x-3">
+              <img src="${item.img}" class="w-10 h-10 object-contain bg-white rounded-lg p-1 border border-slate-200">
+              <div>
+                <h5 class="font-bold text-slate-800 line-clamp-1">${item.title}</h5>
+                <p class="text-slate-500 font-medium">₹${item.price} x ${item.qty}</p>
+              </div>
+            </div>
+            <button onclick="removeFromCart(${item.id})" class="text-red-500 font-bold p-1"><i class="fas fa-trash"></i></button>
+          </div>
+        `;
+      });
+      document.getElementById('cartTotalDisplay').innerText = `₹${total}`;
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      localStorage.setItem('zelx_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function toggleCartDrawer(open = false) {
+      const drawer = document.getElementById('cartDrawer');
+      if(open || drawer.classList.contains('translate-x-full')) drawer.classList.remove('translate-x-full');
+      else drawer.classList.add('translate-x-full');
+    }
+
+    function submitCODOrder() {
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const address = document.getElementById('custAddress').value;
+
+      if(cart.length === 0) { alert('Cart is empty!'); return; }
+      if(!name || !phone || !address) { alert('Please fill in complete delivery details!'); return; }
+
+      const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const order = {
+        id: 'ZELX-' + Math.floor(100000 + Math.random() * 900000),
+        items: [...cart], total, customer: { name, phone, address }, status: 'Placed (COD)'
+      };
+
+      orders.unshift(order);
+      localStorage.setItem('zelx_orders', JSON.stringify(orders));
+
+      const msg = `New COD Order!%0AID: ${order.id}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0ATotal: ₹${total}`;
+      window.open(`https://wa.me/917824048224?text=${msg}`, '_blank');
+
+      cart = [];
+      localStorage.setItem('zelx_cart', JSON.stringify(cart));
+      updateCartUI();
+      toggleCartDrawer();
+      switchTab('orders');
+      renderOrders();
+      alert('Order Placed Successfully via Cash on Delivery!');
+    }
+
+    function renderOrders() {
+      const list = document.getElementById('ordersList');
+      const noOrders = document.getElementById('noOrders');
+      list.innerHTML = '';
+      if(orders.length === 0) { noOrders.classList.remove('hidden'); return; }
+      noOrders.classList.add('hidden');
+
+      orders.forEach(o => {
+        list.innerHTML += `
+          <div class="border border-slate-200 rounded-2xl p-5 bg-slate-50 space-y-2 text-xs shadow-sm">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-2.5 font-bold">
+              <span class="text-slate-900 font-black">Order ID: ${o.id}</span>
+              <span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-extrabold">${o.status}</span>
+            </div>
+            <p><strong>Customer Name:</strong> ${o.customer.name} (${o.customer.phone})</p>
+            <p><strong>Delivery Address:</strong> ${o.customer.address}</p>
+            <p class="font-bold text-slate-900"><strong>Payable Amount:</strong> ₹${o.total} (Cash on Delivery)</p>
+          </div>
+        `;
+      });
+    }
+
+    function populateResellerDropdown() {
+      const select = document.getElementById('resellerSelect');
+      select.innerHTML = '<option value="">Choose product...</option>';
+      products.forEach(p => {
+        select.innerHTML += `<option value="${p.id}">${p.title} - (Cost: ₹${p.wholesalePrice || p.price})</option>`;
+      });
+    }
+
+    function updateResellerCalc() {
+      const id = document.getElementById('resellerSelect').value;
+      const margin = parseFloat(document.getElementById('resellerMargin').value) || 0;
+      if(!id) return;
+      const p = products.find(item => item.id == id);
+      const wholesale = p.wholesalePrice || p.price;
+      const finalPrice = wholesale + margin;
+      document.getElementById('resellerCost').value = wholesale;
+      document.getElementById('resellerFinalPrice').innerText = `₹${finalPrice}`;
+      document.getElementById('resellerPreviewImg').src = p.img;
+      document.getElementById('resellerPreviewTitle').innerText = p.title;
+      document.getElementById('resellerPreviewPrice').innerText = `₹${finalPrice}`;
+    }
+
+    function shareResellerOffer() {
+      const id = document.getElementById('resellerSelect').value;
+      const margin = parseFloat(document.getElementById('resellerMargin').value) || 0;
+      if(!id) { alert('Please select a product first!'); return; }
+      const p = products.find(item => item.id == id);
+      const finalPrice = (p.wholesalePrice || p.price) + margin;
+      const msg = `Check out this product on ZELX!%0A${p.title}%0APrice: ₹${finalPrice} (COD Available)%0AOrder via WhatsApp: https://wa.me/917824048224`;
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    function filterProducts() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      renderProducts(products.filter(p => p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
+    }
+  </script>
+</body>
+</html>
