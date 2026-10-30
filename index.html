@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrendyMart - E-Commerce Store</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-light: #64748b;
+      --danger: #ef4444;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    /* Header */
+    header {
+      background: var(--card-bg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 400px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    .search-bar input:focus {
+      border-color: var(--primary);
+    }
+
+    .cart-trigger {
+      position: relative;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-badge {
+      background: var(--danger);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Main Content */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem 1rem;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+    }
+
+    /* Sidebar Filters */
+    .filter-section {
+      background: var(--card-bg);
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      height: fit-content;
+    }
+
+    .filter-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .filter-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-light);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #e0e7ff;
+      color: var(--primary);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-thumb {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .product-details {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-category {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-bottom {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .add-cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .add-cart-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Cart Drawer Modal */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 100;
+    }
+
+    .cart-overlay.active {
+      display: block;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 100%;
+      max-width: 380px;
+      height: 100%;
+      background: var(--card-bg);
+      z-index: 101;
+      box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.2rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+
+    .cart-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .cart-footer {
+      padding: 1.2rem;
+      border-top: 1px solid #e2e8f0;
+      background: #fafafa;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+      .search-bar {
+        order: 3;
+        max-width: 100%;
+      }
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand">TrendyMart</a>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search products..." oninput="handleSearch()">
+    </div>
+    <button class="cart-trigger" onclick="toggleCart()">
+      🛒 Cart <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </header>
+
+  <!-- Banner -->
+  <section class="hero">
+    <h1>Exclusive Deals Online</h1>
+    <p>Discover top-quality items at discounted prices.</p>
+  </section>
+
+  <!-- Container -->
+  <div class="main-container">
+    <!-- Category Sidebar -->
+    <aside class="filter-section">
+      <h3>Categories</h3>
+      <button class="filter-btn active" onclick="setCategory('all', this)">All Products</button>
+      <button class="filter-btn" onclick="setCategory('electronics', this)">Electronics</button>
+      <button class="filter-btn" onclick="setCategory('fashion', this)">Fashion</button>
+      <button class="filter-btn" onclick="setCategory('home', this)">Home & Living</button>
+    </aside>
+
+    <!-- Product Grid -->
+    <main class="products-grid" id="productGrid"></main>
+  </div>
+
+  <!-- Cart Modal Drawer -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-content" id="cartContent"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total Amount:</span>
+        <span>₹<span id="cartTotal">0</span></span>
+      </div>
+      <button class="checkout-btn" onclick="processCheckout()">Checkout Now</button>
+    </div>
+  </div>
+
+  <script>
+    // Product List Data
+    const products = [
+      { id: 101, title: "Wireless Earbuds", category: "electronics", price: 1999, color: "linear-gradient(45deg, #ff9a9e, #fecfef)" },
+      { id: 102, title: "Smart Band 7", category: "electronics", price: 2499, color: "linear-gradient(45deg, #a1c4fd, #c2e9fb)" },
+      { id: 103, title: "Unisex Hoodie", category: "fashion", price: 1299, color: "linear-gradient(45deg, #ffecd2, #fcb69f)" },
+      { id: 104, title: "Running Shoes", category: "fashion", price: 2999, color: "linear-gradient(45deg, #84fab0, #8fd3f4)" },
+      { id: 105, title: "Desk LED Lamp", category: "home", price: 899, color: "linear-gradient(45deg, #cfd9df, #e2ebf0)" },
+      { id: 106, title: "Ceramic Coffee Mug", category: "home", price: 499, color: "linear-gradient(45deg, #fccb90, #d782d9)" }
+    ];
+
+    let cart = [];
+    let currentCategory = 'all';
+
+    // Render Products Grid
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+
+      const filtered = products.filter(p => {
+        const matchesCategory = (currentCategory === 'all' || p.category === currentCategory);
+        const matchesSearch = p.title.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 2rem;">No matching products found.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="product-card">
+          <div class="product-thumb" style="background: ${item.color}">
+            ${item.title.charAt(0)}
+          </div>
+          <div class="product-details">
+            <div class="product-category">${item.category}</div>
+            <div class="product-title">${item.title}</div>
+            <div class="product-bottom">
+              <span class="product-price">₹${item.price}</span>
+              <button class="add-cart-btn" onclick="addToCart(${item.id})">Add +</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Category Filter
+    function setCategory(cat, element) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      renderProducts();
+    }
+
+    // Search Input Handling
+    function handleSearch() {
+      renderProducts();
+    }
+
+    // Cart Logic
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      updateCartUI();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      // Update badge count
+      document.getElementById('cartBadge').innerText = cart.length;
+
+      // Update cart drawer items
+      const cartContent = document.getElementById('cartContent');
+      if (cart.length === 0) {
+        cartContent.innerHTML = `<div style="text-align: center; color: var(--text-light); margin-top: 2rem;">Your shopping cart is empty.</div>`;
+      } else {
+        cartContent.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <div class="cart-item-title">${item.title}</div>
+              <div class="cart-item-price">₹${item.price}</div>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `).join('');
+      }
+
+      // Calculate Total Price
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      document.getElementById('cartTotal').innerText = total;
+    }
+
+    // Toggle Cart Drawer
+    function toggleCart() {
+      document.getElementById('cartOverlay').classList.toggle('active');
+      document.getElementById('cartDrawer').classList.toggle('active');
+    }
+
+    // Checkout
+    function processCheckout() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Please add items to checkout!');
+        return;
+      }
+      alert('Order placed successfully! Total: ₹' + document.getElementById('cartTotal').innerText);
+      cart = [];
+      updateCartUI();
+      toggleCart();
+    }
+
+    // Initial Load
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
